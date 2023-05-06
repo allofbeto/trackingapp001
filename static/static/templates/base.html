@@ -12,9 +12,16 @@
 <body>
     <header class="header header--page header--fixed">
 		<div class="header__inner">
-			<div class="header__icon header__icon--menu open-panel" data-panel="left"><span></span><span></span><span></span><span></span><span></span><span></span></a></div>
+            {% if user.is_authenticated %}
+            <div class="header__icon header__icon--menu open-panel" data-panel="left"><span></span><span></span><span></span><span></span><span></span><span></span></a></div>
+            <div class="header__logo header__logo--text"><a href="index.html">Mobio<strong>Kit</strong></a></div>
+            <div class="header__icon open-panel" data-panel="right"><img src="{% static 'static/assets/images/icons/white/plus-bold.svg' %}" alt="" title=""/></div>
+            {% else %}
+		    <div class="header__inner">
 			<div class="header__logo header__logo--text"><a href="index.html">Mobio<strong>Kit</strong></a></div>
-			<div class="header__icon open-panel" data-panel="right"><img src="{% static 'static/assets/images/icons/white/plus-bold.svg' %}" alt="" title=""/></div>
+            </div>
+
+            {% endif %}
                 </div>
     </header>
     <!-- Overlay panel -->
@@ -27,8 +34,22 @@
     <div class="page__content page__content--with-header page__content--with-bottom-nav">
 
         {% block content %}
+
         {% endblock %}
     </div>
+<footer>
+    {% if user.is_authenticated %}
+    <div class="bottom-navigation bottom-navigation--gradient">
+            <ul class="bottom-navigation__icons">
+            <li><a href="{% url 'dashboard' %}"><img src="{% static 'static/assets/images/icons/white/home.svg' %}" alt="" title="" /></a></li>
+            <li><a href="user-profile.html"><img src="{% static 'static/assets/images/icons/white/user.svg' %}" alt="" title="" /></a></li>
+            <li class="centered"><a href="contact.html"><img src="{% static 'static/assets/images/icons/white/contact.svg' %}" alt="" title="" /></a></li>
+            <li><a href="services.html"><img src="{% static 'static/assets/images/icons/white/settings.svg' %}" alt="" title="" /></a></li>
+            <li><a href="#" data-popup="social" class="open-popup"><img src="{% static 'static/assets/images/icons/white/love.svg' %}" alt="" title="" /></a></li>
+            </ul>
+    </div>
+    {% endif %}
+</footer>
 
 
 </body>

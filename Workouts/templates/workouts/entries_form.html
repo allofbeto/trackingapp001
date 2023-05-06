@@ -1,0 +1,22 @@
+{% extends 'navbar.html'%}
+
+{% block content %}
+
+    <div class="fieldset">
+		<h2 class="">Add Entry</h2>
+		<div class="form">
+			<div id="Form" class="form__row">
+				<form method="POST">{% csrf_token %}
+					{{ form.as_p }}
+					<div class="buttons">
+						<button type="submit" class="button form__submit button button--main button--small">Add</button>
+						<a href="{% url 'dashboard' %}" class="button button--blue button--small">Cancel</a>
+
+					</div>
+				</form>
+			</div>
+    	</div>
+
+	</div>
+
+{% endblock %}

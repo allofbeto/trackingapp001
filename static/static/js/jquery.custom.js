@@ -107,6 +107,33 @@ $(document).ready(function () {
 			$('.header--change').removeClass('header--page');
 		}
 	});
+
+/*---------- BLOB BUTTONS ---------*/
+      $('.blob-button').click(function() {
+        $(this).find('.bar').toggleClass('bar-active');
+        $(this).siblings('.link').toggleClass('active');
+      });
+
+      $('.blob-button').click(function() {
+        $(this).addClass('blob-button-active');
+        $(this).on('transitionend', function() {
+          $(this).removeClass('button-active');
+        });
+      });
+    });
+
+/*---------Count--------*/
+    $('.count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 500,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
 	
 /*-------------- Page Index----------- */
    if (pageid == 'intro') {
@@ -505,3 +532,4 @@ $(document).ready(function () {
    } 
    
 });
+

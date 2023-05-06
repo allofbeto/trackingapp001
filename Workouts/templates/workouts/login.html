@@ -22,42 +22,40 @@
                 </div>
 	</header>
 
-        <div class="login">
-		<div class="login__content">	
+
+
+			{% block content %}
+
+			<div class="login">
+			<div class="login__content">
 			<h2 class="login__title">Welcome back</h2>
 			<p class="login__text">Login to your account</p>
 
-			{% block content %}
 			<div class="login-form">
-    			<form method='post'>{% csrf_token %}
-        			{{form.as_p}}
-        			<input type='submit' class="login-form__submit button button--main button--full">
-    			</form>
-			</div>
+				<form id="LoginForm" method="post" >{% csrf_token %}
+					<div class="login-form__row">
+						{{form.as_p}}
 
-			{% comment %} <div class="login-form">
-				<form id="LoginForm" method="post" action="main.html">
-					<div class="login-form__row">
-						<label class="login-form__label">Username</label>
-						<input type="text" name="Username" value="" class="login-form__input required" />
 					</div>
-					<div class="login-form__row">
-						<label class="login-form__label">Password</label>
-						<input type="password" name="password" value="" class="login-form__input required" />
-					</div>
+<!--					<div class="login-form__row">-->
+<!--						<label class="login-form__label">Username</label>-->
+<!--						<input type="text" name="Username" value="" class="login-form__input required" />-->
+<!--						<label class="login-form__label">Password</label>-->
+<!--						<input type="password" name="password" value="" class="login-form__input required" />-->
+<!--					</div>-->
 					<div class="login-form__row">
 						<input type="submit" name="submit" class="login-form__submit button button--main button--full" id="submit" value="SIGN IN" />
 					</div>
 				</form>
-				<div class="login-form__forgot-pass"><a href="forgot-password.html">Forgot Password?</a></div>		
+				<div class="login-form__forgot-pass"><a href="{% url 'password-recovery' %}">Forgot Password?</a></div>
 				<div class="login-form__bottom">
 					<p>Don't have an account?</p>
-					<a href="signup.html" class="button button--blue button--full">SIGN UP</a>
+					<a href="{%url 'signup' %}" class="button button--blue button--full">SIGN UP</a>
 				</div>
-			</div> {% endcomment %}
+			</div>
+			</div>
+			</div>
 			{% endblock %}
-		</div>
-        </div>
 			  
 
 

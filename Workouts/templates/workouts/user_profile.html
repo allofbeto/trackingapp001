@@ -1,0 +1,75 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="page__content">
+        <div class="cards cards--11">
+            <div class="card card--style-icon card--style-round-corners">
+                <h2 class="card--style-icon-title" style="text-align:center;">{{ user.first_name }} ~ <u>{{ user.username }}</u></h2>
+                <h5 class="card--style-icon__text" style="text-align:center;">(Joined: {{ user.date_joined }})</h5>
+            </div>
+        </div>
+
+        <div class="page__title-bar">
+            <h1 class="page-title" style="color:#2b2b2b;">Statistics:</h1>
+        </div>
+        <div class="cards cards--12">
+            <div class="card card--style-icon card--style-round-corners">
+                <div class="card__icon"><img src="https://www.svgrepo.com/show/375811/flame.svg" alt="" title=""/></div>
+                    <h4 class="card--style-icon-title">Fit Streak:</h4>
+				    <p class="card--style-icon__text">X X</p>
+            </div>
+            <div class="card card--style-icon card--style-round-corners">
+                <div class="card__icon"><img src="https://www.svgrepo.com/show/211598/stopwatch.svg" alt="" title=""/></div>
+                    <h4 class="card--style-icon-title">Longest Workout</h4>
+				    <p class="card--style-icon__text">XX:XX:XX</p>
+            </div>
+            <div class="card card--style-icon card--style-round-corners">
+                <div class="card__icon"><img src="https://www.svgrepo.com/show/210358/trophy.svg" alt="" title=""/></div>
+                    <h4 class="card--style-icon-title">Weight Increases</h4>
+				    <p class="card--style-icon__text">XX</p>
+            </div>
+            <div class="card card--style-icon card--style-round-corners">
+                <div class="card__icon"><img src="https://www.svgrepo.com/show/210341/weightlifting-excercise.svg" alt="" title=""/></div>
+                    <h4 class="card--style-icon-title">Heaviest Set</h4>
+				    <p class="card--style-icon__text">XXLbs</p>
+            </div>
+
+        </div>
+
+        <div class="page__title-bar">
+            <h1 class="page-title" style="color:#2b2b2b;">Achievements Unlocked:</h1>
+        </div>
+        <div class="cards cards--11" style="background-color:rgb(245,245,245); border-bottom: 3px solid #2b2b2b; padding: 15px; border-radius:25px;">
+            <div class="card card--style-inline">
+                <div class="card__thumb card__thumb--round-corners" style="background-color:red; border-radius:15px;"><img src="https://www.svgrepo.com/show/303723/crystal-shard.svg" alt="" title=""/></div>
+                    <div class="card__details">
+				        <h4 class="card--style-icon-title">Responsive Layout</h4>
+				        <p class="card--style-icon__text">Built to work on all devices</p>
+				    </div>
+            </div>
+            <div class="card card--style-inline">
+                <div class="card__thumb card__thumb--round-corners" style="background-color:black; border-radius:15px;"><img src="https://www.svgrepo.com/show/303734/potion.svg" alt="" title=""/></div>
+                    <div class="card__details">
+				        <h4 class="card--style-icon-title">Responsive Layout</h4>
+				        <p class="card--style-icon__text">Built to work on all devices</p>
+				    </div>
+            </div>
+            <div class="card card--style-inline">
+                <div class="card__thumb card__thumb--round-corners" style="background-color:blue; border-radius:15px;"><img src="https://www.svgrepo.com/show/303717/centaur.svg" alt="" title=""/></div>
+                    <div class="card__details">
+				        <h4 class="card--style-icon-title">Responsive Layout</h4>
+				        <p class="card--style-icon__text">Built to work on all devices</p>
+				    </div>
+            </div>
+        </div>
+<br>
+            <div class="buttons">
+                <button class="button button--main button--full">View All</button>
+                <br>
+            </div>
+        <br><br>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% endblock %}

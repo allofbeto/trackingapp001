@@ -1,0 +1,29 @@
+{% extends "navbar.html" %}
+{% load static %}
+{% block content %}
+        {% for entry in entries %}
+            <a href="#">
+                <div class="card card--style-icon card--style-round-corners">
+                    <div class="card__icon card__icon--centered">
+                        <img src="{% static 'static/assets/images/icons/gradient-purple/pencil.svg' %}" alt="" title=""/>
+                    </div>
+                    <h1 class="card__title card__title--centered">
+                        {{ entry.exercise }}
+
+                    </h1>
+                    <h3 class="card__title card__title--centered">
+                        {{entry.weight}} x <u>{{ entry.reps }}</u>
+                    </h3>
+                    <h6 class="card__title card__title--centered">
+                        {{ entry.created }}
+                    </h6>
+                    <p class="card__text card__text--centered">
+
+                    </p>
+                </div>
+            </a>
+            <br>
+            {% endfor %}
+
+
+    {% endblock %}

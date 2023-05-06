@@ -1,0 +1,107 @@
+.blob-link-icon {
+  width: 50px;
+}
+.blob-container {
+  position: relative;
+}
+.blob-button.blob-button-active:after {
+  content: '';
+  height: 120%;
+  width: 120%;
+  border-radius: 100%;
+  background-color: rgba(20,30,48,0.2);
+  position: absolute;
+}
+.blob-button {
+  position: relative;
+  z-index: 2;
+  height: 5rem;
+  width: 5rem;
+  background-color: white;
+  border-radius: 100%;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+.blob-button:after {
+  content: '';
+  height: 0;
+  width: 0;
+  border-radius: 100%;
+  background-color: rgba(235,235,235,0.4);
+  position: absolute;
+  z-index: 2;
+  transition: 0.1s;
+}
+.blob-button .bar-container .bar1.bar-active {
+  transform: rotate(-45deg);
+  top: 2px;
+}
+.blob-button .bar-container .bar2.bar-active {
+  top: -2px;
+  transform: rotate(45deg);
+}
+.blob-button .bar-container .bar {
+  position: relative;
+  z-index: 3;
+  height: 4px;
+  background-color: #141e30;
+  width: 2rem;
+  transition: 0.25s;
+}
+.blob-button .bar-container .bar:last-child {
+  margin-bottom: 0;
+}
+.link1, .link2, .link3{
+  position: absolute;
+  z-index: 1;
+  top: 1.25rem;
+  left: 1.25rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  background: linear-gradient(60deg, #cd6afb 0%, #624eeb 100%) !important;
+  color: #fff;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  transform: scale(0.8);
+}
+.link1 h2, .link2 h2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.link1 .fas, .link2 .fas{
+  font-size: 1rem;
+}
+.link1.active {
+  top: -5rem;
+}
+.link2.active {
+  left: 4.5rem;
+  top: -5rem;
+  z-index: 5000000;
+}
+.link3.active {
+  left: -3.5rem;
+  top: -5rem;
+  z-index: 5000000;
+}
+.active {
+  transform: scale(1.5);
+}
+
+
+
+.count{
+  line-height: 100px;
+  color:white;
+  margin-left:30px;
+  font-size:25px;
+}

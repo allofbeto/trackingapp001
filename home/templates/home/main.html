@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
+<title>MobioKit - Premium Mobile Template</title>
+<link rel="stylesheet" href="{% static 'static/swiper/swiper.min.css' %}">
+<link rel="stylesheet" href="{% static 'static/css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+</head>
+<body>
+
+{% load static %} <!-- Overlay panel -->
+<div class="body-overlay"></div>
+{% load static %} <!-- Left panel -->
+<div id="panel-left"></div>
+{% load static %} <!-- Right panel -->
+<div id="panel-right"></div>
+
+
+<div class="page page--main" data-page="sliders">
+
+	<!-- PAGE CONTENT -->
+	<div class="page__content">
+
+		<header class="header header--fixed header--change">
+			<div class="header__inner">
+
+				<div class="header__logo header__logo--text"><a href="#">Mobio<strong>Kit</strong></a></div>
+				<div class="header__icon" data-panel="right"><a href="{%url 'login' %}"><img src="{% static 'static/assets/images/icons/white/user.svg' %}" alt="" title=""/></a></div>
+			</div>
+		</header>
+
+		<!-- SLIDER SIMPLE -->
+		<div class="swiper-container slider-simple slider-simple slider-simple--vw-width slider-simple--full-height slider-init" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide slider-simple__slide" style="background-image:url({% static 'static/assets/images/photos/image-6.jpg' %});">
+					<div class="slider-simple__caption caption caption--centered">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--centered">Ditch the pen and pencil, we have an <span>easy to use</span> tool that will keep you on track.</h2>
+							<a href="main.html" class="button button--main button--ex-small">READ MORE</a>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slider-simple__slide" style="background-image:url({% static 'static/assets/images/photos/image-11.jpg' %});">
+					<div class="slider-simple__caption caption caption--centered">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--centered"><span>Measure</span> your growth.</h2>
+							<a href="main.html" class="button button--main button--ex-small">READ MORE</a>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slider-simple__slide" style="background-image:url({% static 'static/assets/images/photos/image-12.jpg' %});">
+					<div class="slider-simple__caption caption caption--centered">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--centered">No hidden fees just you and your <span>workout</span></h2>
+							<a href="main.html" class="button button--main button--ex-small">READ MORE</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-pagination slider-simple__pagination"></div>
+
+		</div>
+
+	</div>
+
+
+
+
+</div>
+{% load static %} <!-- PAGE END -->
+
+
+{% load static %} <!-- Social Icons Popup -->
+<div id="popup-social"></div>
+
+{% load static %} <!-- Alert -->
+<div id="popup-alert"></div>
+
+{% load static %} <!-- Notifications -->
+<div id="popup-notifications"></div>
+
+<script src="{% static 'static/jquery/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'static/jquery/jquery.validate.min.js' %}" ></script>
+<script src="{% static 'static/swiper/swiper.min.js' %}"></script>
+<script src="{% static 'static/js/swiper-init.js' %}"></script>
+<script src="{% static 'static/js/jquery.custom.js' %}"></script>
+</body>
+</html>

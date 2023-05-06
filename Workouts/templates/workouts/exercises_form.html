@@ -1,0 +1,30 @@
+{% extends 'navbar.html'%}
+
+{% block content %}
+
+<style>
+	input[type='checkbox]:checked + label{
+		display:none;
+	}
+</style>
+    <div class="fieldset">
+		<div class="checkbox-option checkbox-option--full">
+			<input type="checkbox" name="checkboxoption1" id="cp1" value="1" checked /><label for="cp1">Checkbox input <span>01</span></label>
+		</div>
+		<h2 class="">Add Exercise</h2>
+		<div class="form" id="Form">
+			<div id="" class="form__row">
+				<form method="POST">{% csrf_token %}
+					{{ form.as_p }}
+					<div class="buttons">
+						<button type="submit" class="button form__submit button button--main button--small">Done</button>
+						<a href="{% url 'dashboard' %}" class="button button--green button--small">Cancel</a>
+
+					</div>
+				</form>
+			</div>
+    	</div>
+
+	</div>
+
+{% endblock %}

@@ -1,22 +1,186 @@
-{% extends "base.html" %}
+{% extends "navbar.html" %}
 {% load static %}
     {% block content %}
-        <h1>These are your exercises:</h1>
-        <div class="cards cards--11">
-            {% for exercise in exercises %}
-            <a href="{% url 'details' pk=exercise.id %}">
-                <div class="card card--style-icon card--style-round-corners">
-                    <div class="card__icon card__icon--centered">
-                        <img src="{% static 'static/assets/images/icons/gradient-purple/plus-bold.svg' %}" alt="" title=""/>
+
+
+
+
+<div class="page__content">
+
+		<div class="user-profile center mb-40">
+			<div class="user-profile__thumb "><img src="{% static 'static/assets/images/photos/image-16.jpg' %}" alt="" title=""/></div>
+			<div class="user-profile__name ">{{ user.first_name }}</u></div>
+			<div class="buttons buttons--centered">
+				<div class="info-box"><span>Exercises</span> {{ exercises.count}} </div>
+				<div class="info-box"><span>Fit Streak</span> XX </div>
+
+			</div>
+		</div>
+
+
+		<h1>Hello Bitches</h1>
+	{% for x in Day %}
+		<ul>
+			<li>{{x.name}}</li>
+		</ul>
+	{% endfor %}
+		<!-- Slider nave arrows-->
+		<div class="page__title-bar">
+			<h3>Let's Get Started <span>Chose a day</span></h3>
+
+			<div class="page__title-right">
+				<div class="swiper-button-prev slider-thumbs__prev"></div>
+				<div class="swiper-button-next slider-thumbs__next"></div>
+			</div>
+		</div>
+		<!-- SLIDER THUMBS 4 -->
+		<div class="swiper-container slider-thumbs slider-init mb-40" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners"><a href="#"><img src="https://images.pexels.com/photos/853247/pexels-photo-853247.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" title=""/></a></div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--smaller"><strong>Sunday</strong></h2>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners"><a href="#"><img src="https://images.pexels.com/photos/4164512/pexels-photo-4164512.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" title=""/></a></div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--smaller"><strong>Monday</strong></h2>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners"><a href="#"><img src="https://images.pexels.com/photos/700446/pexels-photo-700446.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" title=""/></a></div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--smaller"><strong>Tuesday</strong></h2>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners"><a href="#"><img src="https://images.pexels.com/photos/116077/pexels-photo-116077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" title=""/></a></div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--smaller"><strong>Wednesday</strong></h2>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners"><a href="#"><img src="https://images.pexels.com/photos/1547248/pexels-photo-1547248.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" title=""/></a></div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--smaller"><strong>Thursday</strong></h2>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners"><a href="#"><img src="https://images.pexels.com/photos/1756959/pexels-photo-1756959.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" title=""/></a></div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--smaller"><strong>Friday</strong></h2>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners"><a href="#"><img src="https://images.pexels.com/photos/5327523/pexels-photo-5327523.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" title=""/></a></div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--smaller"><strong>Saturday</strong></h2>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="swiper-pagination slider-thumbs__pagination"></div>
+
+		</div>	
+
+
+	<br>
+
+        <div class="page__content page__content--with-header">
+            <div class="page__title-bar">
+			    <h2>Your Exercises</h2>
+		    </div>
+
+          <div class="cards cards--14">
+          {% for exercise in exercises %}
+            <div class="card card--style-thumb">
+              <a href="{% url 'details' pk=exercise.id %}">
+              <div class="card__thumb card__thumb--round-corners">
+                <img src="{% static 'static/assets/images/photos/image-21.jpg' %}" alt="" title=""/>
+                <div class="card__top-right-info">
+                    <div  class="card__more">
+                        <a href="{% url 'edit-exercise' pk=exercise.id %}"><img src="{% static 'static/assets/images/icons/white/more.svg' %}" alt="" title=""/></a>
                     </div>
-                    <h4 class="card__title card__title--centered">
-                        {{ exercise.name }}
-                    </h4>
-                    <p class="card__text card__text--centered">
-                        Built to work on all devices
-                    </p>
                 </div>
-            </a>
-            {% endfor %}
+              </div>
+              </a>
+              <h4 class="card__title centered"><a href="{% url 'details' pk=exercise.id %}">{{ exercise.name }}</a> <br> <strong><a href="{% url 'delete-exercise' pk=exercise.id %}" style="color:red; text-decoration: underline #FF3028;">DELETE</a></strong></h4>
+            </div>
+
+              {% endfor %}
+
+          </div>
         </div>
+
+<div class="page__title-bar">
+			<h3>Two cards per row <span> (Cover Style)</span></h3>
+		</div>
+
+              <div class="cards cards--12">
+			  <div class="card card--style-cover card--style-round-corners" style="background-image:url({% static 'static/assets/images/photos/image-7.jpg' %});">
+			           <div class="card__gradient"></div>
+
+				  <div class="card__icon"><img src="{% static 'static/assets/images/icons/white/mobile.svg' %}" alt="" title=""/></div>
+				  <h4 class="card__title">Responsive Layout</h4>
+				  <p class="card__text">Built to work on all devices</p>
+				  <div class="card__top-right-info">
+					<div class="card__more"><a href="#"><img src="{% static 'static/assets/images/icons/white/more.svg' %}" alt="" title=""/></a></div>
+				  </div>
+
+			  </div>
+			  <div class="card card--style-cover card--style-round-corners" style="background-image:url({% static 'static/assets/images/photos/image-3.jpg' %});">
+			           <div class="card__gradient"></div>
+
+				  <div class="card__icon"><img src="{% static 'static/assets/images/icons/white/code.svg' %}" alt="" title=""/></div>
+				  <h4 class="card__title">Smart coded</h4>
+				  <p class="card__text">Simple HTML/CSS - SASS structure, no dependencies</p>
+				  <div class="card__top-right-info">
+					<div class="card__more"><a href="#"><img src="{% static 'static/assets/images/icons/white/more.svg' %}" alt="" title=""/></a></div>
+				  </div>
+
+			  </div>
+			  <div class="card card--style-cover card--style-round-corners" style="background-image:url({% static 'static/assets/images/photos/image-4.jpg' %});">
+			           <div class="card__gradient"></div>
+
+				  <div class="card__icon"><img src="{% static 'static/assets/images/icons/white/pencil.svg' %}" alt="" title=""/></div>
+				  <h4 class="card__title">Multipurpose</h4>
+				  <p class="card__text">Multiple designs and demos included</p>
+				  <div class="card__top-right-info">
+					<div class="card__more"><a href="#"><img src="{% static 'static/assets/images/icons/white/more.svg' %}" alt="" title=""/></a></div>
+				  </div>
+
+			  </div>
+			  <div class="card card--style-cover card--style-round-corners" style="background-image:url({% static 'static/assets/images/photos/image-5.jpg' %});">
+			           <div class="card__gradient"></div>
+
+				  <div class="card__icon"><img src="{% static 'static/assets/images/icons/white/user.svg' %}" alt="" title=""/></div>
+				  <h4 class="card__title">User friendly</h4>
+				  <p class="card__text">Well-organized user interface</p>
+				  <div class="card__top-right-info">
+					<div class="card__more"><a href="#"><img src="{% static 'static/assets/images/icons/white/more.svg' %}" alt="" title=""/></a></div>
+				  </div>
+
+			  </div>
+              </div>
+
+</div>
+
+
+
+
     {% endblock %}

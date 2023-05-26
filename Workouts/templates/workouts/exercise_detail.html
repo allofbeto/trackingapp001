@@ -1,29 +1,21 @@
 {% extends "navbar.html" %}
 {% load static %}
 {% block content %}
+    <div class="cards cards--11" style="background-color:rgb(245,245,245); border-bottom: 3px solid #2b2b2b; padding: 15px; border-radius:25px;">
         {% for entry in entries %}
-            <a href="#">
-                <div class="card card--style-icon card--style-round-corners">
-                    <div class="card__icon card__icon--centered">
-                        <img src="{% static 'static/assets/images/icons/gradient-purple/pencil.svg' %}" alt="" title=""/>
-                    </div>
-                    <h1 class="card__title card__title--centered">
-                        {{ entry.exercise }}
-
-                    </h1>
-                    <h3 class="card__title card__title--centered">
-                        {{entry.weight}} x <u>{{ entry.reps }}</u>
-                    </h3>
-                    <h6 class="card__title card__title--centered">
-                        {{ entry.created }}
-                    </h6>
-                    <p class="card__text card__text--centered">
-
-                    </p>
+        <div class="card card--style-inline">
+            <div class="card__thumb card__thumb--round-corners" style="background-color:red; border-radius:15px;"><img src="https://www.svgrepo.com/show/303723/crystal-shard.svg" alt="" title=""/></div>
+                <div class="card__details">
+                    <h2 class="card--style-icon-title">{{entry.exercise}} </h2>
+                    <p class="card--style-icon__text">{{entry.weight}} x {{entry.reps}}</p>
+                    <span class="card--style-icon-title">({{entry.created}}) | <a href="#" style="color:red;">Delete</a></span>
+                    <hr>
                 </div>
-            </a>
-            <br>
+
+            </div>
             {% endfor %}
+        </div>
+    <br><br>
 
 
     {% endblock %}

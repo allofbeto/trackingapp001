@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from Workouts.views import ExercisesListView
 
 urlpatterns = [
     path('home', views.HomeView.as_view(), name='home'),
@@ -13,5 +14,6 @@ urlpatterns = [
     path('exercise/new', views.ExercisesCreateView.as_view(), name="exercise.new"),
     path('login', views.LoginInterfaceView.as_view(), name="login"),
     path('logout', views.LogoutInterfaceView.as_view(), name="logout"),
+    path('day/<str:day_name>', views.DayListView.as_view(), name= "day"),
     path('user-profile', views.UserProfileInterface.as_view(), name='user-profile')
 ]

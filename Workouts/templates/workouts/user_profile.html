@@ -7,6 +7,7 @@
             <div class="card card--style-icon card--style-round-corners">
                 <h2 class="card--style-icon-title" style="text-align:center;">{{ user.first_name }} ~ <u>{{ user.username }}</u></h2>
                 <h5 class="card--style-icon__text" style="text-align:center;">(Joined: {{ user.date_joined }})</h5>
+                <h5 class="card--style-icon__text__danger" style="text-align:center;"><a href="{% url 'change_password' %}" style="color:red;">Reset Password</a></h5>
             </div>
         </div>
 

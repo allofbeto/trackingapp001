@@ -28,8 +28,8 @@
 
 			<div class="login">
 			<div class="login__content">
-			<h2 class="login__title">Welcome back</h2>
-			<p class="login__text">Login to your account</p>
+			<h2 class="login__title"style="color:black;">Welcome back</h2>
+			<p class="login__text"style="color:black;">Login to your account</p>
 
 			<div class="login-form">
 				<form id="LoginForm" method="post" >{% csrf_token %}
@@ -47,9 +47,9 @@
 						<input type="submit" name="submit" class="login-form__submit button button--main button--full" id="submit" value="SIGN IN" />
 					</div>
 				</form>
-				<div class="login-form__forgot-pass"><a href="{% url 'password-recovery' %}">Forgot Password?</a></div>
+				<div class="login-form__forgot-pass" ><a style="color:black;" href="#">Forgot Password?</a></div>
 				<div class="login-form__bottom">
-					<p>Don't have an account?</p>
+					<p style="color:black;">Don't have an account?</p>
 					<a href="{%url 'signup' %}" class="button button--blue button--full">SIGN UP</a>
 				</div>
 			</div>

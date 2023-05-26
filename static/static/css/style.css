@@ -1013,7 +1013,7 @@ body.panel-closing .page, body.panel-closing .bottom-toolbar {
     display: block;
     font-weight: 700;
     font-size: 1.2rem;
-    color: #fff; }
+    color: black; }
 
 /* USER DETAILS SIDE PANEL */
 /*===============================================*/
@@ -1320,7 +1320,7 @@ body.panel-closing .page, body.panel-closing .bottom-toolbar {
       border-bottom-left-radius: 15px;
       border-bottom-right-radius: 15px; }
   .card--style-icon {
-    background-color: rgb(245,245,245);
+    background-color: #f5f5f5;
     border-bottom: 3px solid gray;
      }
   .card--style-icon-title{
@@ -1336,6 +1336,9 @@ body.panel-closing .page, body.panel-closing .bottom-toolbar {
     color: #ffffff !important; }
   .card--style-icon__text{
     color: black !important
+  }
+  .card--style-icon__text__danger{
+    color: red !important
   }
   .card--style-inline {
     display: flex;
@@ -1524,7 +1527,7 @@ body.panel-closing .page, body.panel-closing .bottom-toolbar {
     color: #fff; }
     .slider-cover .caption__title {
       font-weight: 300;
-      color: #fff;
+      color: #a2a2a2;
       font-size: 1.8rem;
       line-height: 1.1; }
       .slider-cover .caption__title strong {
@@ -1533,6 +1536,9 @@ body.panel-closing .page, body.panel-closing .bottom-toolbar {
       .slider-cover .caption__title--smaller {
         font-size: 1.4rem;
         line-height: 1; }
+      .caption__title--smaller-weekdays{
+        text-align:center;
+      }
       .slider-cover .caption__title--centered {
         text-align: center; }
       .slider-cover .caption__title--news {

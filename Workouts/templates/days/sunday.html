@@ -1,0 +1,16 @@
+{% extends "navbar.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="page__content">
+        Hello Skanks
+        <ul>
+            {% for exercises in object_list %}
+            <li>{{exercises.name}}</li>
+
+            {% endfor %}
+        </ul>
+    </div>
+
+
+{% endblock %}

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'Workouts',
     'home',
+    'multiselectfield',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -132,3 +133,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_REDIRECT_URL = '/workouts/dashboard'
+
+# This is to send forgot password emails
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "coding.beto@gmail.com"
+EMAIL_HOST_PASSWORD = "Priapus2013!"
+
+#USE MAIL GUN

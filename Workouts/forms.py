@@ -1,7 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, SetPasswordForm, PasswordResetForm
 from .models import Entry, Exercises
+from django.contrib.auth import get_user_model
 from django.contrib.auth.views import UserModel
+
 
 
 DAYS = (
@@ -45,3 +47,14 @@ class EntryForm(forms.ModelForm):
             "reps": forms.NumberInput(attrs={'class': 'pt-20 pb-20 form__row form__input required'}),
             "notes": forms.TextInput(attrs={'class': 'pt-20 pb-20 form__row form__input required'}),
         }
+
+
+class SetPasswordForm(SetPasswordForm):
+    class meta:
+         model = get_user_model()
+         fields = ['new_password1', 'new_ password2']
+
+
+class PasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(PasswordResetForm, self).__init__(*args, **kwargs)

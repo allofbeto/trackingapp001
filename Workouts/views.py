@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.http.response import HttpResponseRedirect
 #this imports the models I've created
-from .models import Exercises,Entry
+from .models import Exercises,Entry, Days
 #this allows me to create/edit/delete model entries
 from django.views.generic import CreateView, UpdateView, TemplateView, ListView, DetailView
 from django.views.generic.edit import DeleteView
@@ -14,10 +14,6 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 from django.contrib.auth.views import UserModel
 
-def streak():
-    model = Entry
-    current_streak = 0
-    last_entry_made = model.get_latest_by('created')
     
 class UserProfileInterface(TemplateView):
     template_name = "workouts/user_profile.html"
@@ -75,16 +71,10 @@ class AuthorizedView(LoginRequiredMixin, TemplateView):
     login_url='/admin'
 
 class ExercisesListView(LoginRequiredMixin, ListView):
-    model = Exercises
-    context_object_name = "exercises"
+    model = Days
+    context_object_name = "days"
     template_name = "workouts/exercises_list.html"
     login_url = "login"
-
-    ordering = ['-date_created']
-
-
-    def get_queryset(self):
-        return self.request.user.exercises.all()
 
 class EntryListView(LoginRequiredMixin, ListView):
     model = Entry
@@ -92,4 +82,15 @@ class EntryListView(LoginRequiredMixin, ListView):
     template_name = "workouts/exercise_detail.html"
     login_url = "/login"
     def get_queryset(self):
-        return self.request.user.entries.all()
+        return self.request.user.entries.filter()
+
+class DayListView(LoginRequiredMixin, ListView):
+    model = Exercises
+    context_object_name = "exercises"
+    template_name = "days/sunday.html"
+    login_url = "/login"
+
+
+    def get_queryset(self):
+        day_id = self.kwargs['day_name']
+        return self.request.user.exercises.filter(days__icontains=day_id).all()

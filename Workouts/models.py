@@ -1,26 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from multiselectfield import  MultiSelectField
+
 UNITS = (
     ('lbs', 'LBS'),
     ('kg', 'KG'),
 )
 
 DAYS = (
-    ('SUN', 'SUN'),
-    ('MON', 'MON'),
-    ('TUE', 'TUE'),
-    ('WED', 'WED'),
-    ('THU', 'THU'),
-    ('FRI', 'FRI'),
-    ('SAT', 'SAT'),
+    ('SUN', 'sun'),
+    ('MON', 'mon'),
+    ('TUE', 'tue'),
+    ('WED', 'wed'),
+    ('THU', 'thu'),
+    ('FRI', 'fri'),
+    ('SAT', 'sat'),
 )
 
+
+class Days(models.Model):
+    name = models.CharField(max_length=3, choices=DAYS)
+    icon_url = models.TextField()
 
 class Exercises(models.Model):
     name = models.CharField(max_length=100)
     units = models.CharField(max_length=3, choices=UNITS)
-    days = models.CharField(max_length=3, choices=DAYS)
+    days = MultiSelectField(choices=DAYS)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='exercises')
 
     def __str__(self):

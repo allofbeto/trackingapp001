@@ -7,9 +7,9 @@
             <h1 class="page-title" style="color:#2b2b2b;">Today's Exercises:</h1>
         </div>
         <div class="cards cards--12">
-            {% for exercises in object_list %}
-            <a href="{% url 'details' pk=exercises.pk %}" class="card card--style-icon card--style-round-corners">
-                <h4 class="card--style-icon-title">{{exercises.name}}</h4>
+            {% for exercise in object_list %}
+            <a href="{% url 'details' exercise_name=exercise.name %}" class="card card--style-icon card--style-round-corners">
+                <h4 class="card--style-icon-title">{{exercise.name}}</h4>
             </a>
             {% endfor %}
 

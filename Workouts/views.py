@@ -82,7 +82,8 @@ class EntryListView(LoginRequiredMixin, ListView):
     template_name = "workouts/exercise_detail.html"
     login_url = "/login"
     def get_queryset(self):
-        return self.request.user.entries.filter()
+        exercise_name = self.kwargs['exercise_name']
+        return self.request.user.entries.filter(exercise__name=exercise_name).order_by('-created').all
 
 class DayListView(LoginRequiredMixin, ListView):
     model = Exercises

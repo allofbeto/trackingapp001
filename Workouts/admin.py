@@ -16,7 +16,13 @@ class ExercisesAdmin(admin.ModelAdmin):
 admin.site.register(models.Exercises, ExercisesAdmin)
 
 class EntryAdmin(admin.ModelAdmin):
-    list_display = ("exercise", 'created',)
+    list_display = ('created',)
 
 
 admin.site.register(models.Entry, EntryAdmin)
+
+class Entry2Admin(admin.ModelAdmin):
+    list_display = ('created',)
+
+
+admin.site.register(models.Entry2, EntryAdmin)

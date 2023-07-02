@@ -1,5 +1,7 @@
 from datetime import datetime
 from django.http.response import HttpResponseRedirect
+from django.template.context_processors import request
+
 #this imports the models I've created
 from .models import Exercises,Entry, Days
 #this allows me to create/edit/delete model entries
@@ -13,7 +15,6 @@ from .forms import ExerciseForm, EntryForm
 from django.contrib.auth.views import LoginView, LogoutView
 
 from django.contrib.auth.views import UserModel
-
     
 class UserProfileInterface(TemplateView):
     template_name = "workouts/user_profile.html"
@@ -37,12 +38,15 @@ class ExerciseUpdateView(UpdateView):
     success_url = '/workouts/dashboard'
     form_class = ExerciseForm
 
-class EntriesCreateView(LoginRequiredMixin, CreateView):
+class EntriesCreateView(LoginRequiredMixin, CreateView, request):
     model = Entry
     success_url = '/workouts/dashboard'
     form_class = EntryForm
     login_url = "login"
     template_name = 'workouts/entries_form.html'
+
+    ref = request.META.get('HTTP_REFERER')
+    print(ref)
 
     def form_valid(self, form):
         self.object = form.save(commit=False)

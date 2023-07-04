@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 from Workouts.views import ExercisesListView
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('home', views.HomeView.as_view(), name='home'),
     path('authorized', views.AuthorizedView.as_view(), name='authorized'),
@@ -16,3 +19,5 @@ urlpatterns = [
     path('day/<str:day_name>', views.DayListView.as_view(), name= "day"),
     path('user-profile', views.UserProfileInterface.as_view(), name='user-profile')
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

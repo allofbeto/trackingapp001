@@ -16,12 +16,13 @@
   ],
   "routes": [
     {
-      "src": "/static/static/(.*)",
-      "dest": "/static/static/$1"
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
     },
     {
       "src": "/(.*)",
       "dest": "trackingapp001/wsgi.py"
     }
-  ]
+  ],
+  "outputDirectory": "staticfiles_build"
 }

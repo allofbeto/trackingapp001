@@ -2,6 +2,20 @@
 {% extends "navbar.html" %}
 {% load static %}
 {% block content %}
+
+    <div class="form">
+			<div id="Form" class="form__row">
+				<form method="POST">{% csrf_token %}
+					{{ form.as_p }}
+					<div class="buttons">
+						<button type="submit" class="button form__submit button button--main button--small">Add</button>
+						<button onclick="history.back()" class="button button--gray button--small">Cancel</button>
+
+					</div>
+				</form>
+			</div>
+    	</div>
+
     <h2 style="color:black;">Past Entries:</h2>
     <div class="cards cards--11" style="background-color:rgb(245,245,245); border-bottom: 3px solid #2b2b2b; padding: 15px; border-radius:25px;">
         {% for entry in entries %}

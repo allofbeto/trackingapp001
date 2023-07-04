@@ -8,7 +8,7 @@
         </div>
         <div class="cards cards--12">
             {% for exercise in object_list %}
-            <a href="{% url 'details' exercise_name=exercise.name %}" class="card card--style-icon card--style-round-corners">
+            <a href="{% url 'details' exercise_id=exercise.id %}" class="card card--style-icon card--style-round-corners">
                 <h4 class="card--style-icon-title">{{exercise.name}}</h4>
             </a>
             {% endfor %}

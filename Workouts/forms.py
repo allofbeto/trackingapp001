@@ -48,6 +48,13 @@ class EntryForm(forms.ModelForm):
             "notes": forms.TextInput(attrs={'class': 'pt-20 pb-20 form__row form__input required'}),
         }
 
+    def __init__(self, eid=None, *args, **kwargs):
+        self.eid = eid
+        super(EntryForm, self).__init__(*args, **kwargs)
+        self.initial['exercise'] = self.eid
+
+
+
 
 class SetPasswordForm(SetPasswordForm):
     class meta:

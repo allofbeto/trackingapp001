@@ -38,15 +38,12 @@ class ExerciseUpdateView(UpdateView):
     success_url = '/workouts/dashboard'
     form_class = ExerciseForm
 
-class EntriesCreateView(LoginRequiredMixin, CreateView, request):
+class EntriesCreateView(LoginRequiredMixin, CreateView):
     model = Entry
     success_url = '/workouts/dashboard'
     form_class = EntryForm
     login_url = "login"
     template_name = 'workouts/entries_form.html'
-
-    ref = request.META.get('HTTP_REFERER')
-    print(ref)
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -80,14 +77,25 @@ class ExercisesListView(LoginRequiredMixin, ListView):
     template_name = "workouts/exercises_list.html"
     login_url = "login"
 
-class EntryListView(LoginRequiredMixin, ListView):
+class EntryListView(LoginRequiredMixin, CreateView, ListView):
     model = Entry
     context_object_name = "entries"
     template_name = "workouts/exercise_detail.html"
     login_url = "/login"
+    form_class = EntryForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["eid"] = self.kwargs['exercise_id']
+        return kwargs
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
     def get_queryset(self):
-        exercise_name = self.kwargs['exercise_name']
-        return self.request.user.entries.filter(exercise__name=exercise_name).order_by('-created').all
+        exercise_id = self.kwargs['exercise_id']
+        return self.request.user.entries.filter(exercise__id=exercise_id).order_by('-created').all
 
 class DayListView(LoginRequiredMixin, ListView):
     model = Exercises

@@ -16,7 +16,7 @@
   ],
   "routes": [
     {
-      "src": "/static/static/(.*)",
+      "src": "/static/(.*)",
       "dest": "/static/$1"
     },
     {
@@ -24,5 +24,7 @@
       "dest": "trackingapp001/wsgi.py"
     }
   ],
-  "outputDirectory": "staticfiles_build"
+  "rewrites":  [
+    {"source": "/(.*)", "destination": "/"}
+      ]
 }

@@ -86,6 +86,8 @@ WSGI_APPLICATION = 'trackingapp001.wsgi.application'
 
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get("POSTGRES_DATABASE"),
         'USER': os.environ.get("POSTGRES_USER"),

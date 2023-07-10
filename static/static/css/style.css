@@ -706,8 +706,7 @@ body.panel-closing .page, body.panel-closing .bottom-toolbar {
   .header__inner {
     width: calc(100% - 40px);
     padding: 0 20px;
-    display: flex;
-    align-items: center;
+    display: block;
     justify-content: space-between; }
   .header__icon {
     cursor: pointer; }

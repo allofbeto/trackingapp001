@@ -261,7 +261,7 @@ Template:	MobioKit
 
 .gradient-purple, .header--page, .bottom-navigation__icons li.centered, .card--style-plan-premium, .page--intro {
   background-color: #cd6afb !important;
-  background: linear-gradient(60deg, #cd6afb 0%, #624eeb 100%) !important; }
+  background: linear-gradient(60deg, #575656 0%, #000000 100%) !important; }
 
 /*===============================================*/
 /* 2. GENERAL		 						 */
@@ -276,7 +276,7 @@ html, body {
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: WHITE;
+  background-color: #dbdbdb;
   color: #c4c4e2;
   margin: 0;
   padding: 0;
@@ -391,7 +391,7 @@ textarea, input, select {
     padding: 20px 0; }
   .button--main {
     background-color: #cd6afb !important;
-    background: linear-gradient(60deg, #cd6afb 0%, #624eeb 100%) !important;
+    background: linear-gradient(60deg, #CF3638 0%, #18007a 100%) !important;
     color: #fff; }
   .button--secondary {
     background-color: #bf62f9;
@@ -849,7 +849,8 @@ body.panel-closing .page, body.panel-closing .bottom-toolbar {
   padding: 10px 0;
   }
   .bottom-navigation--gradient {
-    background: linear-gradient(180deg, rgba(41, 56, 103, 0) 0%, rgba(41, 36, 103, 0) 30%, #292467 30%, #292467 100%); }
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30%, #575656 30%, #000000 100%);
+    }
   .bottom-navigation--white {
     background-color: #ffffff; }
   .bottom-navigation__icons {

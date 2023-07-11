@@ -8,9 +8,12 @@
 <link rel="stylesheet" href="{% static 'static/swiper/swiper.min.css' %}">
 <link rel="stylesheet" href="{% static 'static/css/style.css' %}">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header header--page header--fixed">
+    <header class="header header--page header--fixed" style="background-color:black;">
 		<div class="header__inner">
             {% if user.is_authenticated %}
             <div class="header__icon header__icon--menu open-panel" data-panel="left"><span></span><span></span><span></span><span></span><span></span><span></span></a></div>
@@ -18,7 +21,7 @@
             <div class="header__icon open-panel" data-panel="right"><img src="{% static 'static/assets/images/icons/white/plus-bold.svg' %}" alt="" title=""/></div>
             {% else %}
 		    <div class="header__inner">
-			<div class="header__logo header__logo--text"><a href="index.html"><strong>SWOLE</strong>Y</a></div>
+			<div class="header__logo header__logo--text"><a href="index.html"><img src="{% static 'static/assets/images/logos/logo_power.svg' %}"/><strong>SWOLE</strong>Y</a></div>
             </div>
 
             {% endif %}
@@ -35,7 +38,7 @@
     </div>
 <footer>
     {% if user.is_authenticated %}
-    <div class="bottom-navigation bottom-navigation--gradient">
+    <div class="bottom-navigation bottom-navigation--gradient" style="background-color:black;">
             <ul class="bottom-navigation__icons">
             <li><a href="{% url 'dashboard' %}"><img src="{% static 'static/assets/images/icons/white/home.svg' %}" alt="" title="" /></a></li>
             <li><a href="user-profile.html"><img src="{% static 'static/assets/images/icons/white/user.svg' %}" alt="" title="" /></a></li>

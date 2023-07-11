@@ -391,7 +391,7 @@ textarea, input, select {
     padding: 20px 0; }
   .button--main {
     background-color: #cd6afb !important;
-    background: linear-gradient(60deg, #CF3638 0%, #18007a 100%) !important;
+    background: linear-gradient(60deg, #16205D 0%, #16205D 100%) !important;
     color: #fff; }
   .button--secondary {
     background-color: #bf62f9;

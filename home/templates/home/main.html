@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="{% static 'static/swiper/swiper.min.css' %}">
 <link rel="stylesheet" href="{% static 'static/css/style.css' %}">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -27,7 +29,7 @@
 		<header class="header header--fixed header--change">
 			<div class="header__inner">
 
-				<div class="header__logo header__logo--text"><a href="#">Mobio<strong>Kit</strong></a></div>
+				<div class="header__logo header__logo--text centered" style="font-size:40px; font-family: 'Big Shoulders Stencil Display', cursive;"><a href="index.html"><strong>SWOLEY</strong></a></div>
 				<div class="header__icon" data-panel="right"><a href="{%url 'login' %}"><img src="{% static 'static/assets/images/icons/white/user.svg' %}" alt="" title=""/></a></div>
 			</div>
 		</header>
@@ -35,7 +37,7 @@
 		<!-- SLIDER SIMPLE -->
 		<div class="swiper-container slider-simple slider-simple slider-simple--vw-width slider-simple--full-height slider-init" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide slider-simple__slide" style="background-image:url({% static 'static/assets/images/photos/image-6.jpg' %});">
+				<div class="swiper-slide slider-simple__slide" style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://images.pexels.com/photos/1431283/pexels-photo-1431283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); background-size:cover;">
 					<div class="slider-simple__caption caption caption--centered">
 						<div class="caption__content">
 							<h2 class="caption__title caption__title--centered">Ditch the pen and pencil, we have an <span>easy to use</span> tool that will keep you on track.</h2>
@@ -43,7 +45,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="swiper-slide slider-simple__slide" style="background-image:url({% static 'static/assets/images/photos/image-11.jpg' %});">
+				<div class="swiper-slide slider-simple__slide" style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://images.pexels.com/photos/11246559/pexels-photo-11246559.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); background-size:cover;">
 					<div class="slider-simple__caption caption caption--centered">
 						<div class="caption__content">
 							<h2 class="caption__title caption__title--centered"><span>Measure</span> your growth.</h2>
@@ -51,10 +53,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="swiper-slide slider-simple__slide" style="background-image:url({% static 'static/assets/images/photos/image-12.jpg' %});">
+				<div class="swiper-slide slider-simple__slide" style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://images.pexels.com/photos/12416973/pexels-photo-12416973.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load); background-size:cover;">
 					<div class="slider-simple__caption caption caption--centered">
 						<div class="caption__content">
-							<h2 class="caption__title caption__title--centered">No hidden fees just you and your <span>workout</span></h2>
+							<h2 class="caption__title caption__title--centered">Just you and your <span>workout</span></h2>
 							<a href="main.html" class="button button--main button--ex-small">READ MORE</a>
 						</div>
 					</div>

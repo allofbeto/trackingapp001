@@ -1,4 +1,5 @@
 {% load static %}
+<!--this is base for non-authenticated pages-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,17 +38,6 @@
         {% endblock %}
     </div>
 <footer>
-    {% if user.is_authenticated %}
-    <div class="bottom-navigation bottom-navigation--gradient" style="background-color:black;">
-            <ul class="bottom-navigation__icons">
-            <li><a href="{% url 'dashboard' %}"><img src="{% static 'static/assets/images/icons/white/home.svg' %}" alt="" title="" /></a></li>
-            <li><a href="user-profile.html"><img src="{% static 'static/assets/images/icons/white/user.svg' %}" alt="" title="" /></a></li>
-            <li class="centered"><a href="contact.html"><img src="{% static 'static/assets/images/icons/white/contact.svg' %}" alt="" title="" /></a></li>
-            <li><a href="services.html"><img src="{% static 'static/assets/images/icons/white/settings.svg' %}" alt="" title="" /></a></li>
-            <li><a href="#" data-popup="social" class="open-popup"><img src="{% static 'static/assets/images/icons/white/love.svg' %}" alt="" title="" /></a></li>
-            </ul>
-    </div>
-    {% endif %}
 </footer>
 
 

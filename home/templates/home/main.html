@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
-<title>MobioKit - Premium Mobile Template</title>
+<title>SWOLEY - Fitness Tracking Done Right</title>
 <link rel="stylesheet" href="{% static 'static/swiper/swiper.min.css' %}">
 <link rel="stylesheet" href="{% static 'static/css/style.css' %}">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
@@ -29,7 +29,7 @@
 		<header class="header header--fixed header--change">
 			<div class="header__inner">
 
-				<div class="header__logo header__logo--text centered" style="font-size:40px; font-family: 'Big Shoulders Stencil Display', cursive;"><a href="index.html"><strong>SWOLEY</strong></a></div>
+				<div class="header__logo header__logo--text centered" style="font-size:40px; font-family: 'Big Shoulders Stencil Display', cursive;"><a href="{% url 'welcome' %}"><strong>SWOLEY</strong></a></div>
 				<div class="header__icon" data-panel="right" ><a style="color:white;" href="{%url 'login' %}"><img src="{% static 'static/assets/images/icons/white/user.svg' %}" style="display:inline;" alt="" title=""/>Login/Signup</a></div>
 			</div>
 		</header>

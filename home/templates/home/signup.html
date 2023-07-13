@@ -4,10 +4,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
-<title>MobioKit - Premium Mobile Template</title>
+<title>SWOLEY - Fitness Tracking Done Right</title>
 <link rel="stylesheet" href="{% static 'static/swiper/swiper.min.css' %}">
 <link rel="stylesheet" href="{% static 'static/css/style.css' %}">
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
 	
@@ -16,12 +19,13 @@
 	<!-- HEADER -->
 	<header class="header header--fixed">	
 		<div class="header__inner">	
-			<div class="header__icon"><a onclick="history.back()"><img src="{% static 'static/assets/images/icons/white/arrow-back.svg' %}" alt="" title=""/></a></div>	
+			<div class="header__icon"><a onclick="history.back()"><img src="{% static 'static/assets/images/icons/white/arrow-back.svg' %}" alt="" title=""/></a></div>
                 </div>
 	</header>
 	
         <div class="login">
-		<div class="login__content">	
+		<div class="login__content">
+			<div class="header__logo header__logo--text centered" style="font-size:60px; font-family: 'Big Shoulders Stencil Display', cursive; text-align:center;"><a href="{% url 'welcome' %}"><strong>SWOLEY</strong></a></div>
 			<h2 class="login__title">Create an account</h2>
 			<p class="login__text">Join us for free!</p>
 				<div class="login-form">

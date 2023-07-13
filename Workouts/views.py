@@ -15,6 +15,7 @@ from .forms import ExerciseForm, EntryForm
 from django.contrib.auth.views import LoginView, LogoutView
 
 from django.contrib.auth.views import UserModel
+from django.urls import reverse_lazy
     
 class UserProfileInterface(TemplateView):
     template_name = "workouts/user_profile.html"
@@ -78,7 +79,7 @@ class ExercisesListView(LoginRequiredMixin, ListView):
     template_name = "workouts/exercises_list.html"
     login_url = "login"
 
-class EntryListView(LoginRequiredMixin, CreateView, ListView):
+class EntryListView(LoginRequiredMixin, CreateView, ListView, HttpResponseRedirect):
     model = Entry
     context_object_name = "entries"
     template_name = "workouts/exercise_detail.html"
@@ -89,6 +90,9 @@ class EntryListView(LoginRequiredMixin, CreateView, ListView):
         kwargs = super().get_form_kwargs()
         kwargs["eid"] = self.kwargs['exercise_id']
         return kwargs
+    def get_success_url(self):
+        exercise_id = self.object.exercise.id
+        return reverse_lazy('details', kwargs={'exercise_id':exercise_id})
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user

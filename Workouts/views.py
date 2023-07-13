@@ -55,6 +55,7 @@ class ExercisesCreateView(LoginRequiredMixin, CreateView):
     success_url = '/workouts/dashboard'
     form_class = ExerciseForm
     login_url = "/login"
+    template_name = 'workouts/exercises_form.html'
 
     #this bottom code is what gets the form Validated
     def form_valid(self, form):

@@ -40,7 +40,7 @@ class ExerciseUpdateView(UpdateView):
 
 class EntriesCreateView(LoginRequiredMixin, CreateView):
     model = Entry
-    success_url = 'History.back()'
+    success_url = '/workouts/dashboard'
     form_class = EntryForm
     login_url = "login"
     template_name = 'workouts/entries_form.html'
@@ -52,7 +52,7 @@ class EntriesCreateView(LoginRequiredMixin, CreateView):
         return HttpResponseRedirect(self.get_success_url())
 class ExercisesCreateView(LoginRequiredMixin, CreateView):
     model = Exercises
-    success_url = 'History.back()'
+    success_url = '/workouts/dashboard'
     form_class = ExerciseForm
     login_url = "/login"
     template_name = 'workouts/exercises_form.html'

@@ -15,7 +15,8 @@ from .forms import ExerciseForm, EntryForm
 from django.contrib.auth.views import LoginView, LogoutView
 
 from django.contrib.auth.views import UserModel
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, resolve
+
     
 class UserProfileInterface(TemplateView):
     template_name = "workouts/user_profile.html"
@@ -90,9 +91,9 @@ class EntryListView(LoginRequiredMixin, CreateView, ListView, HttpResponseRedire
         kwargs = super().get_form_kwargs()
         kwargs["eid"] = self.kwargs['exercise_id']
         return kwargs
+
     def get_success_url(self):
-        exercise_id = self.object.exercise.id
-        return reverse_lazy('details', kwargs={'exercise_id':exercise_id})
+        return self.request.path
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
@@ -102,13 +103,22 @@ class EntryListView(LoginRequiredMixin, CreateView, ListView, HttpResponseRedire
         exercise_id = self.kwargs['exercise_id']
         return self.request.user.entries.filter(exercise__id=exercise_id).order_by('-created').all
 
-class DayListView(LoginRequiredMixin, ListView):
+class DayListView(LoginRequiredMixin, CreateView, ListView):
     model = Exercises
     context_object_name = "exercises"
     template_name = "days/sunday.html"
     login_url = "/login"
+    form_class = ExerciseForm
+
+    def get_success_url(self):
+        return self.request.path
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
     def get_queryset(self):
         day_id = self.kwargs['day_name']
-        return self.request.user.exercises.filter(days__icontains=day_id).all()
+        return self.request.user.exercises.filter(days__icontains=day_id).all

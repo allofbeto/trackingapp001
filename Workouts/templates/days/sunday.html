@@ -6,19 +6,31 @@
         <div class="page__title-bar">
             <h1 class="page-title" style="color:#2b2b2b;">Today's Exercises:</h1>
         </div>
-        <div class="fieldset">
-            <h2 class="">Add Exercise</h2>
-            <div class="form" id="Form">
-                <div id="" class="form__row">
-                    <form method="POST">{% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="buttons">
-                            <button type="submit" class="button form__submit button button--main button--small">Done</button>
+        <h3>Toggle Sections</h3>
+
+		<div class="toggle mb-20">
+			<div class="toggle__item">
+			  <input class="toggle__input" id="togg1" type="checkbox" name="toggle">
+			  <label class="toggle__label" for="togg1">ADD EXERCISE <span></span></label>
+				  <div class="toggle__content" style="overflow:auto;">
+					<div class="fieldset">
+                        <h2 class="">Add Exercise</h2>
+                        <div class="form" id="Form">
+                            <div id="" class="form__row">
+                                <form method="POST">{% csrf_token %}
+                                    {{ form.as_p }}
+                                    <div class="buttons">
+                                        <button type="submit" class="button form__submit button button--main button--small">Done</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    </div>
+				  </div>
+			</div>
+		</div>
+
+
         <div class="buttons">
             <a href="{% url 'dashboard' %}" ><div class="button button--gray button--small" >Go Back</div></a>
         </div>

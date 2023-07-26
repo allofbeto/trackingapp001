@@ -259,9 +259,9 @@ Template:	MobioKit
   background-size: cover;
   background-position: center center; }
 
-.gradient-purple, .header--page, .bottom-navigation__icons li.centered, .card--style-plan-premium, .page--intro {
+.gradient-blue, .header--page, .bottom-navigation__icons li.centered, .card--style-plan-premium, .page--intro {
   background-color: #cd6afb !important;
-  background: linear-gradient(60deg, #575656 0%, #000000 100%) !important; }
+  background-image: linear-gradient(to bottom right, #16205C, #0F193C, #0B142C, #080F23, #050B16); }
 
 /*===============================================*/
 /* 2. GENERAL		 						 */
@@ -849,7 +849,7 @@ body.panel-closing .page, body.panel-closing .bottom-toolbar {
   padding: 10px 0;
   }
   .bottom-navigation--gradient {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30%, #575656 30%, #000000 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30%, #16205C 6%, #0F193C 6%, #0B142C 6%, #080F23 6%, #000000 100%);
     }
   .bottom-navigation--white {
     background-color: #ffffff; }
@@ -2387,7 +2387,7 @@ a.plyr__controls__item.plyr__control:hover,
     display: inline-block;
     width: calc(100% - 30px);
     border: none;
-    background-color: #474283;
+    background-color: #2E53A3;
     padding: 18px 15px;
     border-radius: 10px;
     font-weight: 500;
@@ -2437,7 +2437,7 @@ a.plyr__controls__item.plyr__control:hover,
     margin: 0;
     overflow: hidden;
     border-radius: 10px;
-    background-color: #474283;
+    background-color: #2E53A3;
     background-image: url(../../../assets/images/icons/white/arrow-down.svg);
     background-repeat: no-repeat;
     background-position: 95% 50%;
@@ -2642,7 +2642,7 @@ a.plyr__controls__item.plyr__control:hover,
 .fieldset {
   width: calc(100% - 40px);
   padding: 20px;
-  background-color: #292467;
+  background-image: linear-gradient(to bottom right, #16205C, #0F193C, #0B142C, #080F23, #050B16);
   border-radius: 15px;
   margin-bottom: 20px;
   -webkit-box-shadow: 10px 19px 35px -14px rgba(0, 0, 0, 0.17);

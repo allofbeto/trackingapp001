@@ -43,9 +43,9 @@ class EntryForm(forms.ModelForm):
         fields = ('exercise', 'weight', 'reps', 'notes')
         widgets = {
             "exercise": forms.Select(attrs={'class': 'pt-20 pb-20 form__select '}),
-            "weight": forms.NumberInput(attrs={'class': 'pt-20 pb-20 form__row form__input required'}),
-            "reps": forms.NumberInput(attrs={'class': 'pt-20 pb-20 form__row form__input required'}),
-            "notes": forms.TextInput(attrs={'class': 'pt-20 pb-20 form__row form__input required'}),
+            "weight": forms.NumberInput(attrs={'class': ' form__input form__input--12 required'}),
+            "reps": forms.NumberInput(attrs={'class': 'd-flex align-items-center justify-space form__input form__input--12 required'}),
+            "notes": forms.TextInput(attrs={'class': 'form__input justify-space'}),
         }
 
     def __init__(self, eid=None, *args, **kwargs):

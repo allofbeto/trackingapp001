@@ -2384,6 +2384,7 @@ a.plyr__controls__item.plyr__control:hover,
     padding: 10px 0 0 5px;
     font-size: 1.1rem; }
   .form__input {
+    display: inline-block;
     width: calc(100% - 30px);
     border: none;
     background-color: #474283;

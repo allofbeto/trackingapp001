@@ -26,9 +26,9 @@ class ExerciseForm(forms.ModelForm):
             choices=DAYS,
         )
         widgets = {
-            "name": forms.TextInput(attrs={'class': 'pt-20 pb-20 form__row form__input required' }),
-            "units": forms.Select(attrs={'class': 'pt-20 pb-20 form__select '}),
-            "days": forms.CheckboxSelectMultiple(attrs={'class':'checkbox-field--full'})
+            "name": forms.TextInput(attrs={'class': 'pt-20 pb-20 form__row form__input required', 'placeholder':'EXERCISE NAME' }),
+            "units": forms.Select(attrs={'class': 'pt-20 pb-20 form__select ', 'placeholder':'UNITS'}),
+            "days": forms.CheckboxSelectMultiple(attrs={'class':'checkbox-field--full checkbox-option'})
         }
         labels = {
             'name': 'Exercise Name',

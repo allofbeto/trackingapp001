@@ -9,16 +9,23 @@
         <h3>Toggle Sections</h3>
 
 		<div class="toggle mb-20">
-			<div class="toggle__item">
+			<div class="toggle__item" style="border-radius: 15px;">
 			  <input class="toggle__input" id="togg1" type="checkbox" name="toggle">
 			  <label class="toggle__label" for="togg1">ADD EXERCISE <span></span></label>
-				  <div class="toggle__content" style="overflow:auto;">
+				  <div class="toggle__content" style="overflow:auto; background-image: linear-gradient(to bottom right, #16205C, #0F193C, #0B142C, #080F23, #050B16);">
 					<div class="fieldset">
-                        <h2 class="">Add Exercise</h2>
                         <div class="form" id="Form">
                             <div id="" class="form__row">
                                 <form method="POST">{% csrf_token %}
-                                    {{ form.as_p }}
+                                    {{ form.name }}
+                                    {{ form.units }}
+                                    <br><br>
+                                    {% for day_value, day_label in form.days.field.choices %}
+                                      <div class="checkbox-option">
+                                        <input type="checkbox" name="{{ form.days.html_name }}" id="{{ form.days.auto_id }}_{{ forloop.counter0 }}" value="{{ day_value }}" {% if day_value in form.days.data %}checked{% endif %} />
+                                        <label for="{{ form.days.auto_id }}_{{ forloop.counter0 }}">{{ day_label }}</label>
+                                      </div>
+                                    {% endfor %}
                                     <div class="buttons">
                                         <button type="submit" class="button form__submit button button--main button--small">Done</button>
                                     </div>

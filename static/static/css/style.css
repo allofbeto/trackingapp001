@@ -2511,7 +2511,7 @@ a.plyr__controls__item.plyr__control:hover,
     cursor: pointer;
     display: block;
     padding: 15px 20px;
-    background-color: #474283;
+    background-color: #1E3C82;
     color: #fff;
     text-align: left;
     font-size: 1.4rem;
@@ -2523,7 +2523,7 @@ a.plyr__controls__item.plyr__control:hover,
   .checkbox-option input[type="checkbox"] {
     display: none; }
   .checkbox-option input[type="checkbox"]:checked + label {
-    background-color: #bf62f9;
+    background-color: #5078DC;
     color: #fff; }
     .checkbox-option input[type="checkbox"]:checked + label span {
       color: #fff; }
@@ -3011,7 +3011,7 @@ a.plyr__controls__item.plyr__control:hover,
     position: relative;
     width: 100%;
     overflow: hidden;
-    background-color: #292467;
+    background-color: #2E53A3;
     margin-bottom: 1px; }
   .toggle__input {
     position: absolute;
@@ -3037,9 +3037,9 @@ a.plyr__controls__item.plyr__control:hover,
     .toggle__content p {
       padding: 10px !important; }
   .toggle__input:checked ~ .toggle__content {
-    max-height: 300px; }
+    max-height: 350px; }
   .toggle__input:checked ~ .toggle__label, .toggle .toggle__label:hover {
-    background-color: #bf62f9;
+    background-color: #343541;
     color: #fff; }
   .toggle__label span {
     position: absolute;

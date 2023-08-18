@@ -34,6 +34,13 @@ input {
 
     <button onclick="history.back(-46)" class="button button--gray button--small">Go Back</button>
     <h2 style="color:black;">Past Entries:</h2>
+    <a href="{{ DayListView.get_day_list_url }}">Go to Day List</a>
+    <button type="button" class="button form__cancel button--gray button--small" onclick="goBack()">Cancel</button>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <div class="cards cards--11" style="background-color:rgb(245,245,245); border-bottom: 3px solid #2b2b2b; padding: 15px; border-radius:25px;">
         {% for entry in entries %}
         <div class="card card--style-inline">

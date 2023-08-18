@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
 <title>SWOLEY - Fitness Tracking Done Right</title>
+<link rel="icon" type="image/x-icon" href="{% static 'static/assets/swoley/favicon.png' %}">
 <link rel="stylesheet" href="{% static 'static/swiper/swiper.min.css' %}">
 <link rel="stylesheet" href="{% static 'static/css/style.css' %}">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
@@ -20,6 +21,7 @@
 		<div class="splash__content">
 			<div class="header__logo header__logo--text centered" style="font-size:60px; font-family: 'Big Shoulders Stencil Display', cursive; text-align:center;"><a href="{% url 'welcome' %}"><strong>SWOLEY</strong></a></div>
 			<div class="splash__text">Login to your account or Signup to create a new account</div>
+			<button>Click to send test email</button>
 			<div class="splash__buttons">
 				<a href="{% url 'login' %}" class="button button--full button--main">Login</a>
 				<a href="{% url 'signup' %}" class="button button--full button--blue">Signup</a>

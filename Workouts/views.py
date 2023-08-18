@@ -16,6 +16,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 from django.contrib.auth.views import UserModel
 from django.urls import reverse_lazy, resolve
+from django.urls import reverse
+
 
     
 class UserProfileInterface(TemplateView):
@@ -80,6 +82,7 @@ class ExercisesListView(LoginRequiredMixin, ListView):
     template_name = "workouts/exercises_list.html"
     login_url = "login"
 
+
 class EntryListView(LoginRequiredMixin, CreateView, ListView, HttpResponseRedirect):
     model = Entry
     context_object_name = "entries"
@@ -122,3 +125,8 @@ class DayListView(LoginRequiredMixin, CreateView, ListView):
     def get_queryset(self):
         day_id = self.kwargs['day_name']
         return self.request.user.exercises.filter(days__icontains=day_id).all
+
+    def get_day_list_url(self):
+        # Replace 'day-list-url-name' with the name of the URL pattern for the DayListView
+        day_list_url = reverse('day-list')
+        return day_list_url

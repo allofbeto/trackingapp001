@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .decorators import user_not_authenticated
 
+from .forms import CustomUserCreationForm
+
 
 
 class WelcomeView(TemplateView):
@@ -21,7 +23,7 @@ class WelcomeView(TemplateView):
 
 class SignupView(CreateView):
     template_name = "home/signup.html"
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     success_url = '/workouts/login'
 
     def get(self, request, *args, **kwargs):
@@ -31,6 +33,15 @@ class SignupView(CreateView):
 
 class LogoutInterfaceView(LogoutView):
     template_name = "home/splash.html"
+
+    def send_simple_message():
+        return requests.post(
+            "https://api.mailgun.net/v3/sandboxa7e9d238ad5340fc996146bdb04d2088.mailgun.org/messages",
+            auth=("api", "<73f745ed-615b1ade>"),
+            data={"from": "Mailgun Sandbox <postmaster@sandboxa7e9d238ad5340fc996146bdb04d2088.mailgun.org>",
+                  "to": "Alberto Carrazco <carrazco2013@gmail.com>",
+                  "subject": "Hello Alberto Carrazco",
+                  "text": "Congratulations Alberto Carrazco, you just sent an email with Mailgun!  You are truly awesome!"})
 
 class LoginInterfaceView(LoginView):
     TemplateView = "home/login.html"

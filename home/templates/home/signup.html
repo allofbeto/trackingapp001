@@ -1,17 +1,6 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
-<title>SWOLEY - Fitness Tracking Done Right</title>
-<link rel="stylesheet" href="{% static 'static/swiper/swiper.min.css' %}">
-<link rel="stylesheet" href="{% static 'static/css/style.css' %}">
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
-</head>
+
 <body>
 	
 <div class="page page--login" data-page="login">
@@ -30,7 +19,41 @@
 			<p class="login__text">Join us for free!</p>
 				<div class="login-form">
 					<form id="LoginForm" method="POST">{%csrf_token %}
-						{{form.as_p}}
+						<div class="fieldset">
+							<div class="form" id="Form">
+								<div id="" class="form__row">
+									<form method="POST">{% csrf_token %}
+										<div class="form__row">
+											{{ form.username.label_tag }}
+											{{form.username}}
+										</div>
+										<div class="form__row">
+											{{ form.email.label_tag }}
+											{{form.email}}
+										</div>
+										<div class="form__row">
+											{{ form.password1.label_tag }}
+											{{form.password1}}
+										</div>
+										<div class="form__row">
+											{{ form.password2.label_tag }}
+											{{form.password2}}
+										</div>
+
+
+										Your password can’t be too similar to your other personal information.
+										Your password must contain at least 8 characters.
+										Your password can’t be a commonly used password.
+										Your password can’t be entirely numeric.
+										password{{form.password1}}
+										confirm password{{form.password2}}
+										<div class="buttons">
+											<button type="submit" class="button form__submit button button--main button--small">Done</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 <!--						<div class="login-form__row">-->
 <!--							<label class="login-form__label">Username</label>-->
 <!--							<input type="text" name="username" max-length="150" autocapitalize="none" autocomplet="username" autofocus requires id="user_name" value="" class="login-form__input required" />-->

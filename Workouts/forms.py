@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, SetPasswordForm, PasswordResetForm
-from .models import Entry, Exercises
+from .models import Entry, Exercises, Category
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import UserModel
 
@@ -65,3 +65,14 @@ class SetPasswordForm(SetPasswordForm):
 class PasswordResetForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):
         super(PasswordResetForm, self).__init__(*args, **kwargs)
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'parent_category']
+
+class NumberTrackerForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'parent_category']

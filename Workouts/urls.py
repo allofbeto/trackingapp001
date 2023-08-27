@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from Workouts.views import ExercisesListView
 
+app_name = 'workouts'
 
 urlpatterns = [
     path('home', views.HomeView.as_view(), name='home'),
@@ -14,6 +15,12 @@ urlpatterns = [
     path('exercise/new', views.ExercisesCreateView.as_view(), name="exercise_new"),
     path('login', views.LoginInterfaceView.as_view(), name="login"),
     path('logout', views.LogoutInterfaceView.as_view(), name="logout"),
+    path('new_display_entry_form', views.NewDisplayEntriesCreateView.as_view(), name="new_entry_display"),
+    path('new_exercise_list', views.NewExerciseListView.as_view(), name="new_exercise_list"),
+    path('new_entry_list_display/<int:exercise_id>', views.NewExerciseEnryListDisplay.as_view(), name="new_exercise_entry_list"),
     path('day/<str:day_name>', views.DayListView.as_view(), name= "day"),
-    path('user-profile', views.UserProfileInterface.as_view(), name='user-profile')
+    path('user-profile', views.UserProfileInterface.as_view(), name='user-profile'),
+
+    path('create-category/', views.create_category, name='create_category'),
+    path('add-child-or-tracker/<int:category_id>/', views.add_child_or_tracker, name='add_child_or_tracker'),
 ]

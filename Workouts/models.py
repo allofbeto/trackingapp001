@@ -51,3 +51,22 @@ class Entry2(models.Model):
     reps = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='entries2')
+
+
+from django.db import models
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    parent_category = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class NumberTracker(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    number = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.category.name} - {self.number}"

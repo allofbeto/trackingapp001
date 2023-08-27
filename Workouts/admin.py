@@ -26,3 +26,10 @@ class Entry2Admin(admin.ModelAdmin):
 
 
 admin.site.register(models.Entry2, EntryAdmin)
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parent_category',)
+
+
+admin.site.register(models.Category, CategoryAdmin)
+

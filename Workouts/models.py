@@ -65,8 +65,9 @@ class Category(models.Model):
 
 
 class NumberTracker(models.Model):
+    name = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    number = models.IntegerField()
+    units = models.CharField(max_length=3, choices=UNITS)
 
     def __str__(self):
-        return f"{self.category.name} - {self.number}"
+        return self.name

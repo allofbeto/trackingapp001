@@ -20,6 +20,7 @@ from django.urls import reverse
 
 from django.shortcuts import render, redirect
 from .models import Category, NumberTracker
+from django.views import View
 
     
 class UserProfileInterface(TemplateView):
@@ -223,3 +224,12 @@ def add_child_or_tracker(request, category_id):
         form = CategoryForm(initial=initial_data)  # Pass the initial data to the form
 
     return render(request, 'workouts/add_child_or_tracker.html', {'form': form, 'category': category, 'trackers': trackers})
+
+class NewExerciseListView(View):
+    template_name = 'workouts/new_display_entry_form.html'
+
+    def get(self, request, category_id, tracker_id):
+        category = Category.objects.get(id=category_id)
+        tracker = NumberTracker.objects.get(id=tracker_id)
+
+        return render(request, self.template_name, {'category': category, 'tracker': tracker})

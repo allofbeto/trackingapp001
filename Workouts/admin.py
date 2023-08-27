@@ -33,3 +33,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Category, CategoryAdmin)
 
+class NumberTrackerAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+admin.site.register(models.NumberTracker, NumberTrackerAdmin)

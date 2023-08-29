@@ -1,278 +1,308 @@
 {% load static %}<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ category.name }}</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{{ category.name }}</title>
+   <style>
+       body {
+           margin: 0;
+           font-family: Arial, sans-serif;
+       }
 
-        .sticky-header {
-            background-color: rgb(255, 255, 255);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid rgb(235, 235, 235);
-        }
 
-        .back-button,
-        .plus-button {
-            padding: 5px 10px;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            font-size: 32px;
-            color:rgb(85, 167, 250);
-        }
+       .sticky-header {
+           background-color: rgb(255, 255, 255);
+           padding: 10px 20px;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           position: sticky;
+           top: 0;
+           z-index: 100;
+           border-bottom: 2px solid rgb(235, 235, 235);
+       }
 
-        .title {
-            margin: 0;
-            font-size: 32px;
-            font-family: 'Big Shoulders Stencil Display', cursive;
-        }
 
-        .content {
-            padding: 20px;
-        }
+       .back-button,
+       .plus-button {
+           padding: 5px 10px;
+           border: none;
+           background-color: transparent;
+           cursor: pointer;
+           font-size: 32px;
+           color:rgb(85, 167, 250);
+       }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
 
-        td {
-            height: 7vh; /* 10% of viewport height */
-            padding: 10px;
-            border-bottom: 1px solid lightgray;
-        }
-        .circle-container {
-            display: flex;
-            align-items: center; /* Align items vertically */
-        }
+       .title {
+           margin: 0;
+           font-size: 32px;
+           font-family: 'Big Shoulders Stencil Display', cursive;
+       }
 
-        .circle {
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .boop-button {
-            padding: 5px 10px;
-            background-color: transparent;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: auto; /* Push the button to the far right */
-        }
-    /* New styles for the sliding red box */
-    .red-box {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Initially positioned outside the right edge */
-        width: 100%;
-        height: 100vh; /* Cover the entire viewport height */
-        background-color: red;
-        z-index: 99;
-        transition: right 0.3s ease-in-out;
-        padding: 20px;
-        box-sizing: border-box;
-        color: white;
-        padding-top:20%;
-    }
 
-    /* Show the red box when the active class is applied */
-    .active {
-        right: 0;
-    }
+       .content {
+           padding: 20px;
+       }
 
-    /* Styling for the red box header */
-    .red-box-header {
-        font-size: 24px;
-        border-bottom: 1px solid lightgray;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
 
-    /* New styles for the sliding blue box */
-    .blue-box {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Initially positioned outside the right edge */
-        width: 100%;
-        height: 100vh; /* Cover the entire viewport height */
-        background-color: blue; /* Change to blue */
-        z-index: 99;
-        transition: right 0.3s ease-in-out;
-        padding: 20px;
-        box-sizing: border-box;
-        color: white;
-        padding-top: 20%;
-    }
+       table {
+           width: 100%;
+           border-collapse: collapse;
+       }
 
-    /* Show the blue box when the active class is applied */
-    .blue-box.active {
-        right: 0;
-    }
 
-    /* Styling for the blue box header */
-    .blue-box-header {
-        font-size: 24px;
-        border-bottom: 1px solid lightgray;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
+       td {
+           height: 7vh; /* 10% of viewport height */
+           padding: 10px;
+           border-bottom: 1px solid lightgray;
+       }
+       .circle-container {
+           display: flex;
+           align-items: center; /* Align items vertically */
+       }
 
-    /* New styles for the sliding green box */
-    .green-box {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Initially positioned outside the right edge */
-        width: 100%;
-        height: 100vh; /* Cover the entire viewport height */
-        background-color: green; /* Change to blue */
-        z-index: 99;
-        transition: right 0.3s ease-in-out;
-        padding: 20px;
-        box-sizing: border-box;
-        color: white;
-        padding-top: 20%;
-    }
 
-    /* Show the blue box when the active class is applied */
-    .green-box.active {
-        right: 0;
-    }
+       .circle {
+           width: 20px;
+           height: 20px;
+           background-color: red;
+           border-radius: 50%;
+           margin-right: 10px;
+       }
+       .boop-button {
+           padding: 5px 10px;
+           background-color: transparent;
+           color: white;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           margin-left: auto; /* Push the button to the far right */
+       }
+   /* New styles for the sliding red box */
+   .red-box {
+       position: fixed;
+       top: 0;
+       right: -100%; /* Initially positioned outside the right edge */
+       width: 100%;
+       height: 100vh; /* Cover the entire viewport height */
+       background-color: red;
+       z-index: 99;
+       transition: right 0.3s ease-in-out;
+       padding: 20px;
+       box-sizing: border-box;
+       color: white;
+       padding-top:20%;
+   }
 
-    /* Styling for the blue box header */
-    .green-box-header {
-        font-size: 24px;
-        border-bottom: 1px solid lightgray;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
-    </style>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
+
+   /* Show the red box when the active class is applied */
+   .active {
+       right: 0;
+   }
+
+
+   /* Styling for the red box header */
+   .red-box-header {
+       font-size: 24px;
+       border-bottom: 1px solid lightgray;
+       padding-bottom: 10px;
+       margin-bottom: 20px;
+   }
+
+
+   /* New styles for the sliding blue box */
+   .blue-box {
+       position: fixed;
+       top: 0;
+       right: -100%; /* Initially positioned outside the right edge */
+       width: 100%;
+       height: 100vh; /* Cover the entire viewport height */
+       background-color: blue; /* Change to blue */
+       z-index: 99;
+       transition: right 0.3s ease-in-out;
+       padding: 20px;
+       box-sizing: border-box;
+       color: white;
+       padding-top: 20%;
+   }
+
+
+   /* Show the blue box when the active class is applied */
+   .blue-box.active {
+       right: 0;
+   }
+
+
+   /* Styling for the blue box header */
+   .blue-box-header {
+       font-size: 24px;
+       border-bottom: 1px solid lightgray;
+       padding-bottom: 10px;
+       margin-bottom: 20px;
+   }
+
+
+   /* New styles for the sliding green box */
+   .green-box {
+       position: fixed;
+       top: 0;
+       right: -100%; /* Initially positioned outside the right edge */
+       width: 100%;
+       height: 100vh; /* Cover the entire viewport height */
+       background-color: green; /* Change to blue */
+       z-index: 99;
+       transition: right 0.3s ease-in-out;
+       padding: 20px;
+       box-sizing: border-box;
+       color: white;
+       padding-top: 20%;
+   }
+
+
+   /* Show the blue box when the active class is applied */
+   .green-box.active {
+       right: 0;
+   }
+
+
+   /* Styling for the blue box header */
+   .green-box-header {
+       font-size: 24px;
+       border-bottom: 1px solid lightgray;
+       padding-bottom: 10px;
+       margin-bottom: 20px;
+   }
+   </style>
+   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="sticky-header">
-        <button class="back-button"><img src="{% static 'static/assets/images/icons/blue/arrow-left.svg' %}" style="height: 30px;"></button>
-        <h1 class="title">{{ parent_category.name }}</h1>
-        <button class="plus-button"><img src="{% static 'static/assets/images/icons/blue/plus-bold.svg' %}" style="height: 30px;"></button>
-    </header>
-    <div class="content">
-        <table>
-            <colgroup>
-                <col style="width: 90%;">
-            </colgroup>
-            <tbody>
-            {% for category in categories %}
-                    <tr>
-                        <td><a href="{% url 'workouts:add_child_or_tracker' category_id=category.id %}">
-                            <div class="circle-container">
-                                <div class="circle"></div>
-                                {{ category.name }} <!-- Display category name -->
-                                <button class="boop-button"><img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;"></button>
-                            </div>
-                        </a></td>
-                    </tr>
-            {% endfor %}
-
-            {% for tracker in trackers %}
-                <tr>
-                    <a href="{% url 'workouts:new_exercise_list' category_id=category.id tracker_id=tracker.id %}">
-                        <div class="circle-container">
-                            <div class="circle"></div>
-                            {{ tracker.name }} <!-- Display tracker name -->
-                            <button class="boop-button">
-                                <img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;">
-                            </button>
-                        </div>
-                    </a>
-                </tr>
-            {% endfor %}
-        </tbody>
-        </table>
-    </div>
+   <header class="sticky-header">
+       <button class="back-button"><img src="{% static 'static/assets/images/icons/blue/arrow-left.svg' %}" style="height: 30px;"></button>
+       <h1 class="title">{{ parent_category.name }}</h1>
+       <button class="plus-button"><img src="{% static 'static/assets/images/icons/blue/plus-bold.svg' %}" style="height: 30px;"></button>
+   </header>
+   <div class="content">
+       <table>
+           <colgroup>
+               <col style="width: 90%;">
+           </colgroup>
+           <tbody>
+           {% for category in categories %}
+                   <tr>
+                       <td><a href="{% url 'workouts:add_child_or_tracker' category_id=category.id %}">
+                           <div class="circle-container">
+                               <div class="circle"></div>
+                               {{ category.name }} <!-- Display category name -->
+                               <button class="boop-button"><img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;"></button>
+                           </div>
+                       </a></td>
+                   </tr>
+           {% endfor %}
 
 
-    <!-- New red box -->
-    <div class="red-box">
-        <div class="red-box-header">
-            Add Category
-        </div>
-        <div class="green-box-header">
-            Add Exercise (00.00units x reps)
-        </div>
-    </div>
-    <!-- Blue Box -->
-    <div class="blue-box">
-        <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Create Category</button>
-    </form>
-    </div>
-
-    <!-- Green Box -->
-    <div class="green-box">
-        <div class="green-box-header">
-            Add Exercise
-        </div>
-    </div>
-
-    <script>
-    const redPlusButton = document.querySelector('.plus-button');
-    const redBox = document.querySelector('.red-box');
-
-    redPlusButton.addEventListener('click', () => {
-        redBox.classList.toggle('active');
-    });
-
-    const createCategoryLink = document.querySelector('.red-box-header');
-    const blueBox = document.querySelector('.blue-box');
-
-    createCategoryLink.addEventListener('click', () => {
-        blueBox.classList.toggle('active');
-    });
-
-    const addExerciseLink = document.querySelector('.green-box-header');
-    const greenBox = document.querySelector('.green-box');
-
-    addExerciseLink.addEventListener('click', () => {
-        greenBox.classList.toggle('active');
-    });
-
-    const backButton = document.querySelector('.back-button');
-
-    backButton.addEventListener('click', () => {
-        if (blueBox.classList.contains('active')) {
-            blueBox.classList.toggle('active');
-        } else if (greenBox.classList.contains('active')) {
-            greenBox.classList.toggle('active');
-        } else if (redBox.classList.contains('active')) {
-            redBox.classList.toggle('active');
-        } else {
-            // If no boxes are active, simulate a "go back" action
-            // You can replace this with your actual go back logic
-            window.history.back();
-        }
-    });
-
-    // Use the onunload event to refresh the page
-    window.addEventListener('unload', () => {
-        // Do nothing, just let the event trigger the page refresh
-    });
+           {% for tracker in trackers %}
+               <tr>
+                   <a href="{% url 'workouts:new_exercise_list' category_id=category.id tracker_id=tracker.id %}">
+                       <div class="circle-container">
+                           <div class="circle"></div>
+                           {{ tracker.name }} <!-- Display tracker name -->
+                           <button class="boop-button">
+                               <img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;">
+                           </button>
+                       </div>
+                   </a>
+               </tr>
+           {% endfor %}
+       </tbody>
+       </table>
+   </div>
 
 
-    </script>
+
+
+   <!-- New red box -->
+   <div class="red-box">
+       <div class="red-box-header">
+           Add Category
+       </div>
+       <div class="green-box-header">
+           Add Exercise (00.00units x reps)
+       </div>
+   </div>
+   <!-- Blue Box -->
+   <div class="blue-box">
+       <form method="post">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit">Create Category</button>
+   </form>
+   </div>
+
+
+   <!-- Green Box -->
+   <div class="green-box">
+       <div class="green-box-header">
+           Add Exercise
+       </div>
+   </div>
+
+
+   <script>
+   const redPlusButton = document.querySelector('.plus-button');
+   const redBox = document.querySelector('.red-box');
+
+
+   redPlusButton.addEventListener('click', () => {
+       redBox.classList.toggle('active');
+   });
+
+
+   const createCategoryLink = document.querySelector('.red-box-header');
+   const blueBox = document.querySelector('.blue-box');
+
+
+   createCategoryLink.addEventListener('click', () => {
+       blueBox.classList.toggle('active');
+   });
+
+
+   const addExerciseLink = document.querySelector('.green-box-header');
+   const greenBox = document.querySelector('.green-box');
+
+
+   addExerciseLink.addEventListener('click', () => {
+       greenBox.classList.toggle('active');
+   });
+
+
+   const backButton = document.querySelector('.back-button');
+
+
+   backButton.addEventListener('click', () => {
+       if (blueBox.classList.contains('active')) {
+           blueBox.classList.toggle('active');
+       } else if (greenBox.classList.contains('active')) {
+           greenBox.classList.toggle('active');
+       } else if (redBox.classList.contains('active')) {
+           redBox.classList.toggle('active');
+       } else {
+           // If no boxes are active, simulate a "go back" action
+           // You can replace this with your actual go back logic
+           window.history.back();
+       }
+   });
+
+
+   // Use the onunload event to refresh the page
+   window.addEventListener('unload', () => {
+       // Do nothing, just let the event trigger the page refresh
+   });
+
+
+
+
+   </script>
 </body>
 </html>

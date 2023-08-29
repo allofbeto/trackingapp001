@@ -241,9 +241,10 @@
    <!-- Blue Box -->
    <div class="blue-box">
        <form method="post">
-       {% csrf_token %}
-       {{ form.as_p }}
-       <button type="submit">Create Category</button>
+            {% csrf_token %}
+            {{ category_form.as_p }}
+            <button type="submit" name="create_category">Create Category</button>
+        </form>
    </form>
    </div>
 
@@ -253,6 +254,11 @@
        <div class="green-box-header">
            Add Exercise
        </div>
+       <form method="post">
+            {% csrf_token %}
+            {{ tracker_form.as_p }}
+            <button type="submit" name="create_tracker">Create Number Tracker</button>
+        </form>
    </div>
 
 

@@ -243,27 +243,35 @@ def create_category(request):
 
 
 
-
 def add_child_or_tracker(request, category_id):
     parent_category = get_object_or_404(Category, id=category_id)
     categories = Category.objects.filter(parent_category=parent_category)
     trackers = NumberTracker.objects.filter(category=parent_category)
 
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            category = form.save(commit=False)
+        category_form = CategoryForm(request.POST, prefix='category')
+        tracker_form = NumberTrackerForm(request.POST, prefix='tracker')
+
+        if category_form.is_valid() and 'create_category' in request.POST:
+            category = category_form.save(commit=False)
             category.parent_category = parent_category
             category.save()
 
             add_child_or_tracker_url = reverse('workouts:add_child_or_tracker', args=[category.id])
             return redirect(add_child_or_tracker_url)
+
+        elif tracker_form.is_valid() and 'create_tracker' in request.POST:
+            tracker = tracker_form.save(commit=False)
+            tracker.category = parent_category
+            tracker.save()
+
+            return redirect('workouts:new_exercise_list', category_id=parent_category.id, tracker_id=tracker.id)
     else:
-        form = CategoryForm(initial={'parent_category': parent_category})
+        category_form = CategoryForm(initial={'parent_category': parent_category}, prefix='category')
+        tracker_form = NumberTrackerForm(initial={'category': parent_category}, prefix='tracker')
 
-    return render(request, 'workouts/add_child_or_tracker.html', {'form': form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
-#as of 8.29.23 10:25AM this view worked great
-
+    return render(request, 'workouts/add_child_or_tracker.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
+# as of 8.29 11:41 this view allowed users to add either a category or a number tracker and auto selects the "category" field for both models
 
 class NewExerciseListView(View):
    template_name = 'workouts/new_display_entry_form.html'

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Sticky Nav Bar</title>
+    <title>{{ tracker.name }}</title>
     <style>
         body {
             margin: 0;
@@ -136,7 +136,7 @@
 <body>
     <header class="sticky-header">
         <button class="back-button"><img src="{% static 'static/assets/images/icons/blue/arrow-left.svg' %}" style="height: 30px;"></button>
-        <h1 class="title">Page Title</h1>
+        <h1 class="title">{{ tracker.name }}</h1>
         <button class="plus-button"><img src="{% static 'static/assets/images/icons/blue/plus-bold.svg' %}" style="height: 30px;"></button>
     </header>
     {% block content %}

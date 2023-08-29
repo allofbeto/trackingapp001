@@ -165,41 +165,43 @@
 <body>
     <header class="sticky-header">
         <button class="back-button"><img src="{% static 'static/assets/images/icons/blue/arrow-left.svg' %}" style="height: 30px;"></button>
-        <h1 class="title">{{ category.name }}</h1>
+        <h1 class="title">{{ parent_category.name }}</h1>
         <button class="plus-button"><img src="{% static 'static/assets/images/icons/blue/plus-bold.svg' %}" style="height: 30px;"></button>
     </header>
     <div class="content">
-    <table>
-        <colgroup>
-            <col style="width: 90%;">
-        </colgroup>
-        <tbody>
-            {% for subcategory in category.category_set.all %}
-                <tr>
-                    <td><a href="{% url 'workouts:add_child_or_tracker' category_id=subcategory.id %}">
-                        <div class="circle-container">
-                            <div class="circle"></div>
-                            {{ subcategory.name }} <!-- Display subcategory name -->
-                            <button class="boop-button"><img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;"></button>
-                        </div>
-                    </a></td>
-                </tr>
+        <table>
+            <colgroup>
+                <col style="width: 90%;">
+            </colgroup>
+            <tbody>
+            {% for category in categories %}
+                    <tr>
+                        <td><a href="{% url 'workouts:add_child_or_tracker' category_id=category.id %}">
+                            <div class="circle-container">
+                                <div class="circle"></div>
+                                {{ category.name }} <!-- Display category name -->
+                                <button class="boop-button"><img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;"></button>
+                            </div>
+                        </a></td>
+                    </tr>
             {% endfor %}
 
             {% for tracker in trackers %}
                 <tr>
-                    <td>
+                    <a href="{% url 'workouts:new_exercise_list' category_id=category.id tracker_id=tracker.id %}">
                         <div class="circle-container">
                             <div class="circle"></div>
                             {{ tracker.name }} <!-- Display tracker name -->
-                            <button class="boop-button"><img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;"></button>
+                            <button class="boop-button">
+                                <img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;">
+                            </button>
                         </div>
-                    </td>
+                    </a>
                 </tr>
             {% endfor %}
         </tbody>
-    </table>
-</div>
+        </table>
+    </div>
 
 
     <!-- New red box -->

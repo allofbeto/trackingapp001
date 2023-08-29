@@ -10,7 +10,7 @@ from django.views.generic.edit import DeleteView
 #this allows me to password protect pages
 from django.contrib.auth.mixins import LoginRequiredMixin
 #This imports the forms I've created
-from .forms import ExerciseForm, EntryForm, CategoryForm
+from .forms import ExerciseForm, EntryForm, CategoryForm, NumberTrackerForm
 #this imports the Django Login/out views
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -18,10 +18,11 @@ from django.contrib.auth.views import UserModel
 from django.urls import reverse_lazy, resolve
 from django.urls import reverse
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, NumberTracker
+from django.views import View
 
-    
+
 class UserProfileInterface(TemplateView):
     template_name = "workouts/user_profile.html"
     user = UserModel
@@ -204,22 +205,28 @@ def create_category(request):
 
 
 def add_child_or_tracker(request, category_id):
-    category = Category.objects.get(id=category_id)
-    trackers = NumberTracker.objects.filter(category=category)
+    parent_category = get_object_or_404(Category, id=category_id)
+    categories = Category.objects.filter(parent_category=parent_category)
 
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
-            new_category = form.save(commit=False)
-            new_category.parent_category = category
-            new_category.save()
+            category = form.save(commit=False)
+            category.parent_category = parent_category
+            category.save()
 
-            # Use the reverse function to generate the URL
             add_child_or_tracker_url = reverse('workouts:add_child_or_tracker', args=[category.id])
-
-            return redirect(add_child_or_tracker_url)  # Redirect to the generated URL
+            return redirect(add_child_or_tracker_url)
     else:
-        initial_data = {'parent_category': category.id}  # Set initial data for the "Parent Category" field
-        form = CategoryForm(initial=initial_data)  # Pass the initial data to the form
+        form = CategoryForm()
 
-    return render(request, 'workouts/add_child_or_tracker.html', {'form': form, 'category': category, 'trackers': trackers})
+    return render(request, 'workouts/add_child_or_tracker.html', {'form': form, 'categories': categories, 'parent_category': parent_category})
+
+class NewExerciseListView(View):
+    template_name = 'workouts/new_display_entry_form.html'
+
+    def get(self, request, category_id, tracker_id):
+        category = Category.objects.get(id=category_id)
+        tracker = NumberTracker.objects.get(id=tracker_id)
+
+        return render(request, self.template_name, {'category': category, 'tracker': tracker})

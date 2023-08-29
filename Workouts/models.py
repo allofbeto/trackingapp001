@@ -76,3 +76,5 @@ class TrackerEntry(models.Model):
     weight = models.FloatField()
     rep = models.IntegerField()
     note = models.CharField(max_length=1000)
+    def __str__(self):
+        return self.name

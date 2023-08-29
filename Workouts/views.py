@@ -247,6 +247,7 @@ def create_category(request):
 def add_child_or_tracker(request, category_id):
     parent_category = get_object_or_404(Category, id=category_id)
     categories = Category.objects.filter(parent_category=parent_category)
+    trackers = NumberTracker.objects.filter(category=parent_category)
 
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -258,10 +259,10 @@ def add_child_or_tracker(request, category_id):
             add_child_or_tracker_url = reverse('workouts:add_child_or_tracker', args=[category.id])
             return redirect(add_child_or_tracker_url)
     else:
-        # Pass the initial value for the "parent_category" field
         form = CategoryForm(initial={'parent_category': parent_category})
 
-    return render(request, 'workouts/add_child_or_tracker.html', {'form': form, 'categories': categories, 'parent_category': parent_category})
+    return render(request, 'workouts/add_child_or_tracker.html', {'form': form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
+#as of 8.29.23 10:25AM this view worked great
 
 
 class NewExerciseListView(View):

@@ -68,20 +68,13 @@ class NumberTracker(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     units = models.CharField(max_length=3, choices=UNITS)
-<<<<<<< HEAD
 
     def __str__(self):
         return self.name
-=======
->>>>>>> d4cc8c2f834cfe91dd40ed76a8dc2dcb74781057
 
 class TrackerEntry(models.Model):
     weight = models.FloatField()
     rep = models.IntegerField()
     note = models.CharField(max_length=1000)
     def __str__(self):
-<<<<<<< HEAD
         return self.name
-=======
-        return self.name
->>>>>>> d4cc8c2f834cfe91dd40ed76a8dc2dcb74781057

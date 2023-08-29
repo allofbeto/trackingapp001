@@ -21,10 +21,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, NumberTracker
 from django.views import View
-<<<<<<< HEAD
 
-=======
->>>>>>> d4cc8c2f834cfe91dd40ed76a8dc2dcb74781057
 
 class UserProfileInterface(TemplateView):
     template_name = "workouts/user_profile.html"
@@ -232,16 +229,4 @@ class NewExerciseListView(View):
         category = Category.objects.get(id=category_id)
         tracker = NumberTracker.objects.get(id=tracker_id)
 
-<<<<<<< HEAD
-=======
-    return render(request, 'workouts/add_child_or_tracker.html', {'form': form, 'category': category, 'trackers': trackers})
-
-class NewExerciseListView(View):
-    template_name = 'workouts/new_display_entry_form.html'
-
-    def get(self, request, category_id, tracker_id):
-        category = Category.objects.get(id=category_id)
-        tracker = NumberTracker.objects.get(id=tracker_id)
-
->>>>>>> d4cc8c2f834cfe91dd40ed76a8dc2dcb74781057
         return render(request, self.template_name, {'category': category, 'tracker': tracker})

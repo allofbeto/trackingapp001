@@ -146,7 +146,7 @@ STATIC_ROOT = os.path.join(
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_REDIRECT_URL = '/workouts/dashboard'
+LOGIN_REDIRECT_URL = '/workouts/create-category'
 
 
 

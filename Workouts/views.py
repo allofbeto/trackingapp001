@@ -96,6 +96,8 @@ class AuthorizedView(LoginRequiredMixin, TemplateView):
 
 
 class ExercisesListView(LoginRequiredMixin, ListView):
+   model = Days
+   context_object_name = "days"
    template_name = "workouts/exercises_list.html"
    login_url = "login"
 
@@ -278,9 +280,9 @@ class AddChildOrTrackerView(LoginRequiredMixin, View):
             return redirect('workouts:new_exercise_list', category_id=parent_category.id, tracker_id=tracker.id)
 
         return render(request, 'workouts/add_child_or_tracker.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
-
+#as of 8.30.23 at 15:14 this view worked perfectly
 class NewExerciseListView(View):
-   template_name = 'workouts/create_category.html'
+   template_name = 'workouts/new_display_entry_form.html'
 
 
    def get(self, request, category_id, tracker_id):

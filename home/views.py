@@ -18,7 +18,7 @@ class SignupView(CreateView):
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect('dashboard')
+            return redirect('create_category')
         return super().get(request, *args, **kwargs)
 
 

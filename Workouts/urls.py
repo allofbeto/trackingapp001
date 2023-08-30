@@ -12,6 +12,7 @@ app_name = 'workouts'
 urlpatterns = [
    path('home', views.HomeView.as_view(), name='home'),
    path('authorized', views.AuthorizedView.as_view(), name='authorized'),
+   path('dashboard', views.ExercisesListView.as_view(), name='dashboard'),
    path('details/<int:exercise_id>', views.EntryListView.as_view(), name='details'),
    path('delete-exercise/<int:pk>', views.ExerciseDeleteView.as_view(), name='delete-exercise'),
    path('edit-exercise/<int:pk>', views.ExerciseUpdateView.as_view(), name='edit-exercise'),
@@ -24,8 +25,7 @@ urlpatterns = [
    path('day/<str:day_name>', views.DayListView.as_view(), name= "day"),
    path('user-profile', views.UserProfileInterface.as_view(), name='user-profile'),
 
-   path('add-child-or-tracker/<int:category_id>/', AddChildOrTrackerView.as_view(), name='add_child_or_tracker'),
    path('create-category/', CreateCategoryView.as_view(), name='create_category'),
-   path('dashboard', CreateCategoryView.as_view(), name='dashboard'),
+   path('add-child-or-tracker/<int:category_id>/', AddChildOrTrackerView.as_view(), name='add_child_or_tracker'),
    path('new_exercise_list/<int:category_id>/<int:tracker_id>/', views.NewExerciseListView.as_view(), name="new_exercise_list"),
 ]

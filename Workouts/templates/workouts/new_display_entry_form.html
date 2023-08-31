@@ -129,16 +129,132 @@
             margin-bottom: 10px;
             text-align: center; /* Center the day name */
         }
+
+        /* New styles for the sliding red box */
+       .red-box {
+           position: fixed;
+           top: 0;
+           right: -100%; /* Initially positioned outside the right edge */
+           width: 100%;
+           height: 100vh; /* Cover the entire viewport height */
+           background-color: red;
+           z-index: 99;
+           transition: right 0.3s ease-in-out;
+           padding: 20px;
+           box-sizing: border-box;
+           color: white;
+           padding-top:20%;
+       }
+
+
+       /* Show the red box when the active class is applied */
+       .active {
+           right: 0;
+       }
+
+
+       /* Styling for the red box header */
+       .red-box-header {
+           font-size: 24px;
+           border-bottom: 1px solid lightgray;
+           padding-bottom: 10px;
+           margin-bottom: 20px;
+       }
+
+
+       /* New styles for the sliding blue box */
+       .blue-box {
+           position: fixed;
+           top: 0;
+           right: -100%; /* Initially positioned outside the right edge */
+           width: 100%;
+           height: 100vh; /* Cover the entire viewport height */
+           background-color: blue; /* Change to blue */
+           z-index: 99;
+           transition: right 0.3s ease-in-out;
+           padding: 20px;
+           box-sizing: border-box;
+           color: white;
+           padding-top: 20%;
+       }
+
+
+       /* Show the blue box when the active class is applied */
+       .blue-box.active {
+           right: 0;
+       }
+
+
+       /* Styling for the blue box header */
+       .blue-box-header {
+           font-size: 24px;
+           border-bottom: 1px solid lightgray;
+           padding-bottom: 10px;
+           margin-bottom: 20px;
+       }
+
+
+       /* New styles for the sliding green box */
+       .green-box {
+           position: fixed;
+           top: 0;
+           right: -100%; /* Initially positioned outside the right edge */
+           width: 100%;
+           height: 100vh; /* Cover the entire viewport height */
+           background-color: green; /* Change to blue */
+           z-index: 99;
+           transition: right 0.3s ease-in-out;
+           padding: 20px;
+           box-sizing: border-box;
+           color: white;
+           padding-top: 20%;
+       }
+
+
+       /* Show the blue box when the active class is applied */
+       .green-box.active {
+           right: 0;
+       }
+
+
+       /* Styling for the blue box header */
+       .green-box-header {
+           font-size: 24px;
+           border-bottom: 1px solid lightgray;
+           padding-bottom: 10px;
+           margin-bottom: 20px;
+       }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="sticky-header">
-        <button class="back-button"><img src="{% static 'static/assets/images/icons/blue/arrow-left.svg' %}" style="height: 30px;"></button>
-        <h1 class="title">{{ tracker.name }}</h1>
-        <button class="plus-button"><img src="{% static 'static/assets/images/icons/blue/plus-bold.svg' %}" style="height: 30px;"></button>
-    </header>
+       <button class="back-button"><img src="{% static 'static/assets/images/icons/blue/arrow-left.svg' %}" style="height: 30px;"></button>
+       <h1 class="title">{{ tracker.name }}</h1>
+       <button class="plus-button"><img src="{% static 'static/assets/images/icons/blue/plus-bold.svg' %}" style="height: 30px;"></button>
+   </header>
+    <!-- New red box -->
+   <div class="red-box">
+       <div class="red-box-header">
+           Add Category
+       </div>
+       <div class="green-box-header">
+           Add Exercise (00.00units x reps)
+       </div>
+   </div>
+   <!-- Blue Box -->
+   <div class="blue-box">
+   </div>
+
+
+   <!-- Green Box -->
+   <div class="green-box">
+       <div class="green-box-header">
+           Add Exercise
+       </div>
+   </div>
+
     {% block content %}
         <div class="title">
             <h1 id="day"></h1>
@@ -163,6 +279,31 @@
             <textarea style="width: 100%; height: 350px; border:none;"></textarea>
         </div>
 
+       <!-- Back button script-->
+    <script>
+        const backButton = document.querySelector('.back-button');
+        const redBox = document.querySelector('.red-box');
+        const blueBox = document.querySelector('.blue-box');
+        const greenBox = document.querySelector('.green-box');
+
+        backButton.addEventListener('click', () => {
+            if (greenBox.classList.contains('active')) {
+                greenBox.classList.remove('active');
+                blueBox.classList.add('active');
+            } else if (blueBox.classList.contains('active')) {
+                blueBox.classList.remove('active');
+                redBox.classList.add('active');
+            } else if (redBox.classList.contains('active')) {
+                redBox.classList.remove('active');
+            } else {
+                // If no boxes are active, simulate a "go back" action
+                // You can replace this with your actual go back logic
+                window.history.back();
+            }
+        });
+    </script>
+
+    <!--Calendar script-->
         <script>
             const dayElement = document.getElementById('day');
             const dateElement = document.getElementById('date');

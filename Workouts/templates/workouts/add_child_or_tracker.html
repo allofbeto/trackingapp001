@@ -87,13 +87,17 @@
        right: -100%; /* Initially positioned outside the right edge */
        width: 100%;
        height: 100vh; /* Cover the entire viewport height */
-       background-color: red;
+       background-color: rgba(240 240 240);
        z-index: 99;
        transition: right 0.3s ease-in-out;
        padding: 20px;
        box-sizing: border-box;
        color: white;
        padding-top:20%;
+   }
+
+   label{
+       color: rgb(131 203 248);
    }
 
 
@@ -106,6 +110,7 @@
    /* Styling for the red box header */
    .red-box-header {
        font-size: 24px;
+       color: rgb(131,203,248);
        border-bottom: 1px solid lightgray;
        padding-bottom: 10px;
        margin-bottom: 20px;
@@ -119,10 +124,10 @@
        right: -100%; /* Initially positioned outside the right edge */
        width: 100%;
        height: 100vh; /* Cover the entire viewport height */
-       background-color: blue; /* Change to blue */
+       background-color: rgba(240 240 240); /* Change to blue */
        z-index: 99;
        transition: right 0.3s ease-in-out;
-       padding: 20px;
+       padding-left: 0px;
        box-sizing: border-box;
        color: white;
        padding-top: 20%;
@@ -138,6 +143,7 @@
    /* Styling for the blue box header */
    .blue-box-header {
        font-size: 24px;
+       color: rgb(131,203,248);
        border-bottom: 1px solid lightgray;
        padding-bottom: 10px;
        margin-bottom: 20px;
@@ -151,10 +157,10 @@
        right: -100%; /* Initially positioned outside the right edge */
        width: 100%;
        height: 100vh; /* Cover the entire viewport height */
-       background-color: green; /* Change to blue */
+       background-color: rgba(240 240 240); /* Change to blue */
        z-index: 99;
        transition: right 0.3s ease-in-out;
-       padding: 20px;
+       padding-left: 0px;
        box-sizing: border-box;
        color: white;
        padding-top: 20%;
@@ -170,10 +176,49 @@
    /* Styling for the blue box header */
    .green-box-header {
        font-size: 24px;
+       color: rgb(131,203,248);
        border-bottom: 1px solid lightgray;
        padding-bottom: 10px;
        margin-bottom: 20px;
    }
+
+    .custom-select-input{
+        color: rgb(131,203,248);
+        height: 50px;
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid rgb(200, 200, 200);
+        border-top: 2px solid rgb(200, 200, 200);
+        font-size: 30px;
+        text-align: center;
+        font-family: 'Big Shoulders Stencil Display', cursive;
+    }
+
+    .custom-text-input{
+        color: rgb(200,200,200);
+        height: 50px;
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid rgb(200,200,200);
+        border-top: 2px solid rgb(200,200,200);
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .submit-FW{
+        height: 50px;
+        width: 80%;
+        font-size: 30px;
+        color: white;
+        border-radius: 10px;
+        background-color: #83CBF8;
+        text-align: center;
+        font-family: 'Big Shoulders Stencil Display', cursive;
+        border: none;
+        border-right: 3px solid #797979;
+        border-bottom: 3px solid #797979;
+    }
+
    </style>
    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
@@ -241,25 +286,34 @@
    </div>
    <!-- Blue Box -->
    <div class="blue-box">
-       <form method="post">
-            {% csrf_token %}
-            {{ category_form.as_p }}
-            <button type="submit" name="create_category">Create Category</button>
-        </form>
-   </form>
+       <div class="blue-box-header">
+
+       </div>
+       <div class="form-container" style="text-align: center;">
+           <form method="post">
+                {% csrf_token %}
+                {{ category_form.name }}
+                <br><br>
+                {{ category_form.parent_category }}
+                <br><br>
+                <button type="submit" name="create_category" class="submit-FW">CREATE</button>
+            </form>
+       </div>
    </div>
 
 
    <!-- Green Box -->
    <div class="green-box">
        <div class="green-box-header">
-           Add Exercise
+
        </div>
-       <form method="post">
-            {% csrf_token %}
-            {{ tracker_form.as_p }}
-            <button type="submit" name="create_tracker">Create Number Tracker</button>
-        </form>
+       <div class="form-container" style="text-align: center;">
+           <form method="post">
+                {% csrf_token %}
+                {{ tracker_form.as_p }}
+                <button type="submit" name="create_tracker" class="submit-FW">Create Number Tracker</button>
+            </form>
+       </div>
    </div>
 
 

@@ -71,8 +71,17 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'parent_category']
+        widgets = {
+            "name": forms.TextInput(attrs={'placeholder':'name', 'class':'custom-text-input',}),
+            "parent_category": forms.Select(attrs={'class':'custom-select-input'}),
+        }
 
 class NumberTrackerForm(forms.ModelForm):
     class Meta:
         model = NumberTracker
         fields = ['name', 'category', 'units']
+        widgets = {
+            "name": forms.TextInput(attrs={'placeholder': 'name', 'class': 'custom-text-input', }),
+            "category": forms.Select(attrs={'class': 'custom-select-input'}),
+            "units": forms.Select(attrs={'class': 'custom-select-input', 'placeholder':'UNITS'}),
+        }

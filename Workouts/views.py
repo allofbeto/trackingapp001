@@ -24,9 +24,12 @@ from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, NumberTracker
 from django.views import View
+from django.contrib.auth import get_user
 
 
-
+# Define the get_current_user function to access the authenticated user
+def get_current_user(request):
+    return get_user(request)
 
 class UserProfileInterface(TemplateView):
    template_name = "workouts/user_profile.html"
@@ -219,13 +222,13 @@ class NewDisplayEntriesCreateView(LoginRequiredMixin, CreateView):
 
 
 
-
+#as of 09.02.2023 9:36 views tie authenticated user to the created models below and filters them out
 class CreateCategoryView(LoginRequiredMixin, View):
     login_url = '/login/'  # The URL to redirect to if the user is not logged in
     redirect_field_name = 'next'  # The query parameter to store the original URL
 
     def get(self, request):
-        categories = Category.objects.filter(parent_category__isnull=True)
+        categories = Category.objects.filter(user=request.user, parent_category__isnull=True)
         category_form = CategoryForm(prefix='category')
         tracker_form = NumberTrackerForm(prefix='tracker')
         return render(request, 'workouts/create_category.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories})
@@ -235,16 +238,20 @@ class CreateCategoryView(LoginRequiredMixin, View):
         tracker_form = NumberTrackerForm(request.POST, prefix='tracker')
 
         if category_form.is_valid() and 'create_category' in request.POST:
-            category = category_form.save()
+            category = category_form.save(commit=False)
+            category.user = request.user
+            category.save()
             add_child_or_tracker_url = reverse('workouts:add_child_or_tracker', args=[category.id])
             return redirect(add_child_or_tracker_url)
 
         elif tracker_form.is_valid() and 'create_tracker' in request.POST:
-            tracker = tracker_form.save()
+            tracker = tracker_form.save(commit=False)
+            tracker.user = request.user
+            tracker.save()
             add_child_or_tracker_url = reverse('workouts:add_child_or_tracker', args=[tracker.category.id])
             return redirect(add_child_or_tracker_url)
 
-        categories = Category.objects.filter(parent_category__isnull=True)
+        categories = Category.objects.filter(user=request.user, parent_category__isnull=True)
         return render(request, 'workouts/create_category.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories})
 
 class AddChildOrTrackerView(LoginRequiredMixin, View):
@@ -252,9 +259,9 @@ class AddChildOrTrackerView(LoginRequiredMixin, View):
     redirect_field_name = 'next'  # The query parameter to store the original URL
 
     def get(self, request, category_id):
-        parent_category = get_object_or_404(Category, id=category_id)
-        categories = Category.objects.filter(parent_category=parent_category)
-        trackers = NumberTracker.objects.filter(category=parent_category)
+        parent_category = get_object_or_404(Category, id=category_id, user=request.user)
+        categories = Category.objects.filter(user=request.user, parent_category=parent_category)
+        trackers = NumberTracker.objects.filter(user=request.user, category=parent_category)
         category_form = CategoryForm(initial={'parent_category': parent_category}, prefix='category')
         tracker_form = NumberTrackerForm(initial={'category': parent_category}, prefix='tracker')
         return render(request, 'workouts/add_child_or_tracker.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
@@ -268,6 +275,7 @@ class AddChildOrTrackerView(LoginRequiredMixin, View):
 
         if category_form.is_valid() and 'create_category' in request.POST:
             category = category_form.save(commit=False)
+            category.user = request.user  # Set the user field
             category.parent_category = parent_category
             category.save()
             add_child_or_tracker_url = reverse('workouts:add_child_or_tracker', args=[category.id])
@@ -275,19 +283,17 @@ class AddChildOrTrackerView(LoginRequiredMixin, View):
 
         elif tracker_form.is_valid() and 'create_tracker' in request.POST:
             tracker = tracker_form.save(commit=False)
+            tracker.user = request.user  # Set the user field
             tracker.category = parent_category
             tracker.save()
             return redirect('workouts:new_exercise_list', category_id=parent_category.id, tracker_id=tracker.id)
 
         return render(request, 'workouts/add_child_or_tracker.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
-#as of 8.30.23 at 15:14 this view worked perfectly
+
 class NewExerciseListView(View):
-   template_name = 'workouts/new_display_entry_form.html'
+    template_name = 'workouts/new_display_entry_form.html'
 
-
-   def get(self, request, category_id, tracker_id):
-       category = Category.objects.get(id=category_id)
-       tracker = NumberTracker.objects.get(id=tracker_id)
-
-
-       return render(request, self.template_name, {'category': category, 'tracker': tracker})
+    def get(self, request, category_id, tracker_id):
+        category = Category.objects.get(id=category_id)
+        tracker = NumberTracker.objects.get(id=tracker_id)
+        return render(request, self.template_name, {'category': category, 'tracker': tracker})

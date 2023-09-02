@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 from multiselectfield import  MultiSelectField
-
+from django.contrib.auth import get_user
 
 UNITS = (
    ('lbs', 'LBS'),
@@ -20,7 +20,6 @@ DAYS = (
    ('FRI', 'fri'),
    ('SAT', 'sat'),
 )
-
 
 
 
@@ -63,37 +62,31 @@ class Entry2(models.Model):
    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='entries2')
 
 
-
-
-from django.db import models
-
-
-
-
 class Category(models.Model):
    name = models.CharField(max_length=100)
    parent_category = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
-
+   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
    def __str__(self):
-       return self.name
-
-
+      return self.name
 
 
 class NumberTracker(models.Model):
    name = models.CharField(max_length=100)
    category = models.ForeignKey(Category, on_delete=models.CASCADE)
    units = models.CharField(max_length=3, choices=UNITS)
-
+   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
    def __str__(self):
-       return self.name
+      return self.name
 
 
 class TrackerEntry(models.Model):
    weight = models.FloatField()
    rep = models.IntegerField()
    note = models.CharField(max_length=1000)
+   user = models.ForeignKey(User, on_delete=models.CASCADE)
+
    def __str__(self):
-       return self.name
+      return self.name
+

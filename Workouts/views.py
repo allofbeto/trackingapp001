@@ -11,7 +11,7 @@ from django.views.generic.edit import DeleteView
 #this allows me to password protect pages
 from django.contrib.auth.mixins import LoginRequiredMixin
 #This imports the forms I've created
-from .forms import ExerciseForm, EntryForm, CategoryForm, NumberTrackerForm
+from .forms import ExerciseForm, EntryForm, CategoryForm, NumberTrackerForm, TrackerEntryForm
 #this imports the Django Login/out views
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -294,6 +294,22 @@ class NewExerciseListView(View):
     template_name = 'workouts/new_display_entry_form.html'
 
     def get(self, request, category_id, tracker_id):
-        category = Category.objects.get(id=category_id)
-        tracker = NumberTracker.objects.get(id=tracker_id)
-        return render(request, self.template_name, {'category': category, 'tracker': tracker})
+        category = get_object_or_404(Category, id=category_id)
+        tracker = get_object_or_404(NumberTracker, id=tracker_id)
+        form = TrackerEntryForm(initial={'number_tracker': tracker})  # Pass the tracker as initial data
+        return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
+
+    def post(self, request, category_id, tracker_id):
+        category = get_object_or_404(Category, id=category_id)
+        tracker = get_object_or_404(NumberTracker, id=tracker_id)
+        form = TrackerEntryForm(request.POST)
+        if form.is_valid() and 'create_entry' in request.POST:
+            entry = form.save(commit=False)
+            entry.user = request.user
+            entry.number_tracker = tracker
+            entry.save()
+            return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
+        return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
+
+
+

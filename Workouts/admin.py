@@ -38,3 +38,9 @@ class NumberTrackerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.NumberTracker, NumberTrackerAdmin)
+
+class TrackerEntryAdmin(admin.ModelAdmin):
+    list_display = ('weight',)
+
+
+admin.site.register(models.TrackerEntry, TrackerEntryAdmin)

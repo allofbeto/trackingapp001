@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, SetPasswordForm, PasswordResetForm
-from .models import Entry, Exercises, Category, NumberTracker
+from .models import Entry, Exercises, Category, NumberTracker, TrackerEntry
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import UserModel
 
@@ -84,4 +84,14 @@ class NumberTrackerForm(forms.ModelForm):
             "name": forms.TextInput(attrs={'placeholder': 'name', 'class': 'custom-text-input', }),
             "category": forms.Select(attrs={'class': 'custom-select-input'}),
             "units": forms.Select(attrs={'class': 'custom-select-input', 'placeholder':'UNITS'}),
+        }
+
+class TrackerEntryForm(forms.ModelForm):
+    class Meta:
+        model = TrackerEntry
+        fields = ['weight','rep','number_tracker']
+        widgets = {
+            "weight": forms.NumberInput(attrs={'placeholder': 'WEIGHT','class':'custom-weight-input',}),
+            "rep": forms.NumberInput(attrs={'placeholder': 'REPS', 'class':'custom-rep-input'}),
+            "number_tracker": forms.HiddenInput(),
         }

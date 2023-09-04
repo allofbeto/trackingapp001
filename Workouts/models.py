@@ -87,7 +87,7 @@ class TrackerEntry(models.Model):
    note = models.CharField(max_length=1000)
    user = models.ForeignKey(User, on_delete=models.CASCADE)
    nothing = models.TextField(max_length=100, blank=True)
+   number_tracker = models.ForeignKey(NumberTracker, on_delete=models.CASCADE)
+   created = models.DateTimeField(auto_now_add=True)
 
-   def __str__(self):
-      return self.name
 

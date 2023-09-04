@@ -224,6 +224,26 @@
            padding-bottom: 10px;
            margin-bottom: 20px;
        }
+       .custom-weight-input{
+           width: 80px;
+           padding: 5px;
+           border: none;
+           font-size: 20px;
+           color: #dedede;
+           text-align: right;
+       }
+       .custom-rep-input{
+           width: 75px;
+           padding: 5px;
+           border: none;
+           font-size: 20px;
+           color: #dedede;
+           text-align: left;
+           margin-right: 0px;
+       }
+       li,label{
+           display:none;
+       }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
@@ -270,11 +290,18 @@
         <div class="edit-form-container" style="display: flex; align-items: center; border-bottom: 1px solid lightgray;">
             <button class="boop-button" style="color: blue; margin-left: 3%;">Edit</button>
             <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end; margin-right: 3%;">
-                <input type="number" style="width: 80px; padding: 5px; border: none; font-size: 20px; color: #dedede; text-align: right;" placeholder="0.0 units">
-                <span style="font-size: 12px; color:purple; text-align:center; margin-left: 3px;">X</span>
-                <input type="number" style="width: 80px; padding: 5px; border: none; font-size: 20px; color: #dedede; text-align: left;" placeholder="-- reps">
+                <form method="post" style="display: flex; align-items: center;" onsubmit="clearFormFields()">
+                    {% csrf_token %}
+                    <div style="display: flex; align-items: center;">
+                        {{form.as_p}}
+                        <button type="submit" name="create_entry" class="submit" id="goButton" style="padding: 3px 10px; background-color: transparent; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            <img src="{% static 'static/assets/images/icons/blue/save.svg' %}" style="height: 20px;"/>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+
         <div style="width: 90%; margin: 0 auto; overflow: scroll; text-align: center; border: 1px solid lightgray;">
             <textarea style="width: 100%; height: 350px; border:none;"></textarea>
         </div>
@@ -302,6 +329,16 @@
             }
         });
     </script>
+    <!--Refresh form on submit-->
+    <script>
+        function clearFormFields() {
+            // Clear form fields on successful submission
+            document.getElementById("id_weight").value = "";
+            document.getElementById("id_rep").value = "";
+            // Add similar lines for other form fields if needed
+        }
+    </script>
+
 
     <!--Calendar script-->
         <script>

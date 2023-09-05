@@ -82,7 +82,7 @@ class NumberTrackerForm(forms.ModelForm):
         fields = ['name', 'category', 'units']
         widgets = {
             "name": forms.TextInput(attrs={'placeholder': 'name', 'class': 'custom-text-input', }),
-            "category": forms.Select(attrs={'class': 'custom-select-input'}),
+            "category": forms.HiddenInput,
             "units": forms.Select(attrs={'class': 'custom-select-input', 'placeholder':'UNITS'}),
         }
 

@@ -314,27 +314,65 @@
 
        <!-- Back button script-->
     <script>
-        const backButton = document.querySelector('.back-button');
+        const redPlusButton = document.querySelector('.plus-button');
         const redBox = document.querySelector('.red-box');
+
+        redPlusButton.addEventListener('click', () => {
+            redBox.classList.toggle('active');
+        });
+
+        const createCategoryLink = document.querySelector('.red-box-header');
         const blueBox = document.querySelector('.blue-box');
+
+        createCategoryLink.addEventListener('click', () => {
+            blueBox.classList.toggle('active');
+        });
+
+        const addExerciseLink = document.querySelector('.green-box-header');
         const greenBox = document.querySelector('.green-box');
 
+        addExerciseLink.addEventListener('click', () => {
+            greenBox.classList.toggle('active');
+        });
+
+        const backButton = document.querySelector('.back-button');
+
         backButton.addEventListener('click', () => {
-            if (greenBox.classList.contains('active')) {
-                greenBox.classList.remove('active');
-                blueBox.classList.add('active');
-            } else if (blueBox.classList.contains('active')) {
-                blueBox.classList.remove('active');
-                redBox.classList.add('active');
-            } else if (redBox.classList.contains('active')) {
-                redBox.classList.remove('active');
+            const noBoxActive = !(redBox.classList.contains('active') || blueBox.classList.contains('active') || greenBox.classList.contains('active'));
+
+            if (noBoxActive) {
+                // If no boxes are active, check the previous URL and redirect accordingly
+                if (window.history.length > 1) {
+                    // Get the previous URL from the browser's history
+                    const previousURL = document.referrer;
+
+                    if (previousURL.includes('/workouts/new_exercise_list/')) {
+                        // Redirect to "workouts/create-category" if the previous URL contains the specified pattern
+                        window.location.href = '/workouts/create-category/';
+                    } else {
+                        // If the previous URL doesn't match the pattern, go back in history
+                        window.history.back();
+                    }
+                } else {
+                    // If there's no history, simulate a "go back" action
+                    // You can replace this with your actual go back logic
+                    window.history.back();
+                }
             } else {
-                // If no boxes are active, simulate a "go back" action
-                // You can replace this with your actual go back logic
-                window.history.back();
+                // Toggle the active class for boxes
+                redBox.classList.toggle('active');
+                blueBox.classList.toggle('active');
+                greenBox.classList.toggle('active');
             }
         });
+
+        // Use the onunload event to refresh the page
+        window.addEventListener('unload', () => {
+            // Do nothing, just let the event trigger the page refresh
+        });
     </script>
+
+
     <!--Refresh form on submit-->
     <script>
         function clearFormFields() {

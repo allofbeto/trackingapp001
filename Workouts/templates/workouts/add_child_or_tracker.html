@@ -294,8 +294,6 @@
                 {% csrf_token %}
                 {{ category_form.name }}
                 <br><br>
-                {{ category_form.parent_category }}
-                <br><br>
                 <button type="submit" name="create_category" class="submit-FW">CREATE</button>
             </form>
        </div>
@@ -318,55 +316,55 @@
 
 
    <script>
-   const redPlusButton = document.querySelector('.plus-button');
-   const redBox = document.querySelector('.red-box');
+    const redPlusButton = document.querySelector('.plus-button');
+    const redBox = document.querySelector('.red-box');
 
+    redPlusButton.addEventListener('click', () => {
+        redBox.classList.toggle('active');
+    });
 
-   redPlusButton.addEventListener('click', () => {
-       redBox.classList.toggle('active');
-   });
+    const createCategoryLink = document.querySelector('.red-box-header');
+    const blueBox = document.querySelector('.blue-box');
 
+    createCategoryLink.addEventListener('click', () => {
+        blueBox.classList.toggle('active');
+    });
 
-   const createCategoryLink = document.querySelector('.red-box-header');
-   const blueBox = document.querySelector('.blue-box');
+    const addExerciseLink = document.querySelector('.green-box-header');
+    const greenBox = document.querySelector('.green-box');
 
+    addExerciseLink.addEventListener('click', () => {
+        greenBox.classList.toggle('active');
+    });
 
-   createCategoryLink.addEventListener('click', () => {
-       blueBox.classList.toggle('active');
-   });
+    const backButton = document.querySelector('.back-button');
 
+    backButton.addEventListener('click', () => {
+        if (blueBox.classList.contains('active')) {
+            blueBox.classList.toggle('active');
+        } else if (greenBox.classList.contains('active')) {
+            greenBox.classList.toggle('active');
+        } else if (redBox.classList.contains('active')) {
+            redBox.classList.toggle('active');
+        } else {
+            // If no boxes are active, check the current URL and redirect accordingly
+            const currentURL = window.location.pathname;
+            if (currentURL.includes('/workouts/new_exercise_list/')) {
+                // Redirect to "workouts/create-category" if the URL matches
+                window.location.href = '/workouts/create-category/';
+            } else {
+                // If the URL doesn't match, simulate a "go back" action
+                // You can replace this with your actual go back logic
+                window.history.back();
+            }
+        }
+    });
 
-   const addExerciseLink = document.querySelector('.green-box-header');
-   const greenBox = document.querySelector('.green-box');
+    // Use the onunload event to refresh the page
+    window.addEventListener('unload', () => {
+        // Do nothing, just let the event trigger the page refresh
+    });
+</script>
 
-
-   addExerciseLink.addEventListener('click', () => {
-       greenBox.classList.toggle('active');
-   });
-
-
-   const backButton = document.querySelector('.back-button');
-
-
-   backButton.addEventListener('click', () => {
-       if (blueBox.classList.contains('active')) {
-           blueBox.classList.toggle('active');
-       } else if (greenBox.classList.contains('active')) {
-           greenBox.classList.toggle('active');
-       } else if (redBox.classList.contains('active')) {
-           redBox.classList.toggle('active');
-       } else {
-           // If no boxes are active, simulate a "go back" action
-           // You can replace this with your actual go back logic
-           window.history.back();
-       }
-   });
-
-
-   // Use the onunload event to refresh the page
-   window.addEventListener('unload', () => {
-       // Do nothing, just let the event trigger the page refresh
-   });
-   </script>
 </body>
 </html>

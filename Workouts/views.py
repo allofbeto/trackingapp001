@@ -11,7 +11,7 @@ from django.views.generic.edit import DeleteView
 #this allows me to password protect pages
 from django.contrib.auth.mixins import LoginRequiredMixin
 #This imports the forms I've created
-from .forms import ExerciseForm, EntryForm, CategoryForm, NumberTrackerForm, TrackerEntryForm
+from .forms import ExerciseForm, EntryForm, CategoryForm, NumberTrackerForm, TrackerEntryForm, TrackerEntry
 #this imports the Django Login/out views
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -297,7 +297,8 @@ class NewExerciseListView(View):
         category = get_object_or_404(Category, id=category_id)
         tracker = get_object_or_404(NumberTracker, id=tracker_id)
         form = TrackerEntryForm(initial={'number_tracker': tracker})
-        return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
+        tracker_entries = TrackerEntry.objects.filter(number_tracker=tracker).order_by('-created')
+        return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form, 'tracker_entries': tracker_entries,})
 
     def post(self, request, category_id, tracker_id):
         category = get_object_or_404(Category, id=category_id)
@@ -322,5 +323,6 @@ class NewExerciseListView(View):
 
             return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
         return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
+    # tracker entry form and filter is working Perfectly
 
 

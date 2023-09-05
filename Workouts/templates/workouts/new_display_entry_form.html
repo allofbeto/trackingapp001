@@ -290,7 +290,7 @@
         <div class="edit-form-container" style="display: flex; align-items: center; border-bottom: 1px solid lightgray;">
             <button class="boop-button" style="color: blue; margin-left: 3%;">Edit</button>
             <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end; margin-right: 3%;">
-                <form method="post" style="display: flex; align-items: center;" onsubmit="clearFormFields()">
+                <form method="post" style="display: flex; align-items: center;">
                     {% csrf_token %}
                     <div style="display: flex; align-items: center;">
                         {{form.as_p}}
@@ -303,7 +303,9 @@
         </div>
 
         <div style="width: 90%; margin: 0 auto; overflow: scroll; text-align: center; border: 1px solid lightgray;">
-            <textarea style="width: 100%; height: 350px; border:none;"></textarea>
+    <!-- Textarea for displaying user's tracker entries -->
+            <textarea style="width: 100%; height: 350px; border: none;">
+            </textarea>
         </div>
 
        <!-- Back button script-->

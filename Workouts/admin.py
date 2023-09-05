@@ -40,7 +40,7 @@ class NumberTrackerAdmin(admin.ModelAdmin):
 admin.site.register(models.NumberTracker, NumberTrackerAdmin)
 
 class TrackerEntryAdmin(admin.ModelAdmin):
-    list_display = ('weight',)
+    list_display = ('weight', 'created',)
 
 
 admin.site.register(models.TrackerEntry, TrackerEntryAdmin)

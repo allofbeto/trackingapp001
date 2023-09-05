@@ -296,7 +296,7 @@ class NewExerciseListView(View):
     def get(self, request, category_id, tracker_id):
         category = get_object_or_404(Category, id=category_id)
         tracker = get_object_or_404(NumberTracker, id=tracker_id)
-        form = TrackerEntryForm(initial={'number_tracker': tracker})  # Pass the tracker as initial data
+        form = TrackerEntryForm(initial={'number_tracker': tracker})
         return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
 
     def post(self, request, category_id, tracker_id):
@@ -310,6 +310,5 @@ class NewExerciseListView(View):
             entry.save()
             return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
         return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
-
 
 

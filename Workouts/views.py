@@ -302,12 +302,24 @@ class NewExerciseListView(View):
     def post(self, request, category_id, tracker_id):
         category = get_object_or_404(Category, id=category_id)
         tracker = get_object_or_404(NumberTracker, id=tracker_id)
-        form = TrackerEntryForm(request.POST)
-        if form.is_valid() and 'create_entry' in request.POST:
-            entry = form.save(commit=False)
-            entry.user = request.user
-            entry.number_tracker = tracker
-            entry.save()
+
+        if 'create_entry' in request.POST:
+            form = TrackerEntryForm(request.POST)
+            if form.is_valid():
+                entry = form.save(commit=False)
+                entry.user = request.user
+                entry.number_tracker = tracker
+                entry.save()
+
+                # Create a new empty form and set focus to the first field
+                form = TrackerEntryForm()
+                form.fields['weight'].widget.attrs['autofocus'] = True  # Auto-select 'weight' field
+
+                # Redirect to the same page to clear the URL and avoid resubmission
+                return HttpResponseRedirect(request.path_info)
+        else:
+            form = TrackerEntryForm()
+
             return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
         return render(request, self.template_name, {'category': category, 'tracker': tracker, 'form': form})
 

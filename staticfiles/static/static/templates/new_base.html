@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sticky Nav Bar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sticky-header {
+            background-color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid rgb(235, 235, 235);
+        }
+
+        .back-button,
+        .plus-button {
+            padding: 5px 10px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 32px;
+            color:rgb(85, 167, 250);
+        }
+
+        .title {
+            margin: 0;
+            font-size: 32px;
+            font-family: 'Big Shoulders Stencil Display', cursive;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            height: 7vh; /* 10% of viewport height */
+            padding: 10px;
+            border-bottom: 1px solid lightgray;
+        }
+        .circle-container {
+            display: flex;
+            align-items: center; /* Align items vertically */
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .boop-button {
+            padding: 5px 10px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: auto; /* Push the button to the far right */
+        }
+    /* New styles for the sliding red box */
+    .red-box {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Initially positioned outside the right edge */
+        width: 100%;
+        height: 100vh; /* Cover the entire viewport height */
+        background-color: red;
+        z-index: 99;
+        transition: right 0.3s ease-in-out;
+        padding: 20px;
+        box-sizing: border-box;
+        color: white;
+        padding-top:90px;
+    }
+
+    /* Show the red box when the active class is applied */
+    .active {
+        right: 0;
+    }
+
+    /* Styling for the red box header */
+    .red-box-header {
+        font-size: 24px;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    /* New styles for the sliding blue box */
+    .blue-box {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Initially positioned outside the right edge */
+        width: 100%;
+        height: 100vh; /* Cover the entire viewport height */
+        background-color: blue; /* Change to blue */
+        z-index: 99;
+        transition: right 0.3s ease-in-out;
+        padding: 20px;
+        box-sizing: border-box;
+        color: white;
+        padding-top: 20%;
+    }
+
+    /* Show the blue box when the active class is applied */
+    .blue-box.active {
+        right: 0;
+    }
+
+    /* Styling for the blue box header */
+    .blue-box-header {
+        font-size: 24px;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    /* New styles for the sliding green box */
+    .green-box {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Initially positioned outside the right edge */
+        width: 100%;
+        height: 100vh; /* Cover the entire viewport height */
+        background-color: green; /* Change to blue */
+        z-index: 99;
+        transition: right 0.3s ease-in-out;
+        padding: 20px;
+        box-sizing: border-box;
+        color: white;
+        padding-top: 20%;
+    }
+
+    /* Show the blue box when the active class is applied */
+    .green-box.active {
+        right: 0;
+    }
+
+    /* Styling for the blue box header */
+    .green-box-header {
+        font-size: 24px;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    #day {
+            display: inline;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        #date {
+            display: inline;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .date-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .date-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+            font-size: 16px;
+            color: #666;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        .active-date {
+            background-color: blue;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .day-name {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: center; /* Center the day name */
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="sticky-header">
+        <button class="back-button"><img src="{% static 'static/assets/images/icons/blue/arrow-left.svg' %}" style="height: 30px;"></button>
+        <h1 class="title">Page Title</h1>
+        <button class="plus-button"><img src="{% static 'static/assets/images/icons/blue/plus-bold.svg' %}" style="height: 30px;"></button>
+    </header>
+</body>
+
+<script src="{% static 'static/jquery/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'static/jquery/jquery.validate.min.js' %}" ></script>
+<script src="{% static 'static//swiper/swiper.min.js' %}"></script>
+<script src="{% static 'static/js/swiper-init.js' %}"></script>
+<script src="{% static 'static/js/jquery.custom.js' %}"></script>
+<script src="{% static 'static/js/additional_js.js' %}"></script>

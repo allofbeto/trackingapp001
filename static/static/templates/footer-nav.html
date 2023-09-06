@@ -1,0 +1,54 @@
+{% load static %}
+<style>
+    .sticky-footer {
+        background-color: rgba(255, 255, 255, 0.9);
+        position: fixed; /* Change to fixed */
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        border-top: 3px solid rgb(235, 235, 235);
+        height: 10vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .footer-nav {
+        display: flex;
+        justify-content: space-between;
+        width:80%;
+    }
+
+    .footer-nav span {
+    }
+
+    .footer-nav span:last-child {
+        margin-right: 0;
+    }
+
+    .footer-nav a {
+        text-decoration: none;
+        color: rgb(85, 167, 250);
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .footer-nav a:hover {
+        color: #333; /* Change color on hover */
+    }
+
+    .footer-icons{
+        height: 30px;
+    }
+
+</style>
+
+<div class="sticky-footer">
+    <div class="footer-nav">
+        <span><a href="/workouts/create-category"><img src="{% static 'static/assets/images/icons/bblue/home.svg' %}" alt="my profile" title="" class="footer-icons"/></a></span>
+        <span><a href="#"><img src="{% static 'static/assets/images/icons/bblue/files.svg' %}" alt="my profile" title="" class="footer-icons"/></a></span>
+        <span><a href="#"><img src="{% static 'static/assets/images/icons/bblue/profile.svg' %}" alt="my profile" title="" class="footer-icons"/></a></span>
+        <span><a href="{% url 'logout' %}"><img src="{% static 'static/assets/images/icons/bblue/logout.svg' %}" alt="my profile" title="" class="footer-icons"/></a></span>
+    </div>
+</div>

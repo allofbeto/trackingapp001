@@ -302,8 +302,8 @@
             </div>
         </div>
 
-        <div style="width: 90%; margin: 0 auto; overflow: scroll; text-align: left; border: 1px solid lightgray; height:300px; overflow:scroll;">
     <!-- Textarea for displaying user's tracker entries -->
+        <div style="width: 90%; margin: 0 auto; overflow: scroll; text-align: left; border: 1px solid lightgray; height:300px; overflow:scroll;">
             {% for entry in tracker_entries %}
             <span style="color:#83CBF8;">{{ entry.created }}</span> - Weight: {{ entry.weight }} <span style="color:purple;">x</span> {{ entry.rep }} <br><br>
                 {% if not forloop.last %}{% endif %}
@@ -311,6 +311,7 @@
                 No tracker entries found for this tracker.
             {% endfor %}
         </div>
+
 
        <!-- Back button script-->
     <script>
@@ -453,4 +454,7 @@
     <script src="{% static 'static/js/jquery.custom.js' %}"></script>
     <script src="{% static 'static/js/additional_js.js' %}"></script>
 </body>
+<footer>
+    {% include 'footer-nav.html' %}
+</footer>
 </html>

@@ -347,9 +347,18 @@
                     // Get the previous URL from the browser's history
                     const previousURL = document.referrer;
 
-                    if (previousURL.includes('/workouts/new_exercise_list/')) {
-                        // Redirect to "workouts/create-category" if the previous URL contains the specified pattern
-                        window.location.href = '/workouts/create-category/';
+                    if (previousURL.includes('add-child-or-tracker') || previousURL.includes('new_exercise_list')) {
+                        // Extract the category_id from the current URL
+                        const match = window.location.pathname.match(/\d+/);
+                        const category_id = match ? match[0] : null;
+
+                        if (category_id !== null) {
+                            // Redirect to the appropriate URL with category_id
+                            window.location.href = `/workouts/add-child-or-tracker/${category_id}/`;
+                        } else {
+                            // Handle the case where no category_id is found
+                            window.history.back();
+                        }
                     } else {
                         // If the previous URL doesn't match the pattern, go back in history
                         window.history.back();
@@ -372,6 +381,7 @@
             // Do nothing, just let the event trigger the page refresh
         });
     </script>
+
 
 
     <!--Refresh form on submit-->

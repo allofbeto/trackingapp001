@@ -65,20 +65,18 @@
 
 
        .circle {
-           width: 20px;
-           height: 20px;
+           min-width: 20px;
+           min-height: 20px;
            background-color: red;
            border-radius: 50%;
            margin-right: 10px;
        }
        .boop-button {
-           padding: 5px 10px;
            background-color: transparent;
            color: white;
            border: none;
            border-radius: 5px;
            cursor: pointer;
-           margin-left: auto; /* Push the button to the far right */
        }
    /* New styles for the sliding red box */
    .red-box {
@@ -256,15 +254,21 @@
            {% for tracker in trackers %}
                <tr>
                    <td>
-                       <a href="{% url 'workouts:new_exercise_list' category_id=parent_category.id tracker_id=tracker.id %}">
+
                            <div class="circle-container">
                                <div class="circle"></div>
-                               {{ tracker.name }} <!-- Display tracker name -->
-                               <button class="boop-button">
-                                   <img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;">
-                               </button>
+                               <div style="width:25%;">
+                                    <a href="{% url 'workouts:new_exercise_list' category_id=parent_category.id tracker_id=tracker.id %}">{{ tracker.name }} <!-- Display tracker name --></a>
+                               </div>
+                                   <input id="weight" type="number" style="margin:1em; width:2em;" placeholder="LBS"> <span style="color:orange;">x</span> <input type="number" style="margin:1em; width:2em;" placeholder="REP">
+                                   <button style="background:transparent; border:none; cursor:pointer;">
+                                       <img src="{% static 'static/assets/images/icons/green/submit-success.svg' %}" style="height:20px;">
+                                   </button>
+                                   <button class="boop-button">
+                                       <img src="{% static 'static/assets/images/icons/blue/charts.svg' %}" style="height:20px;">
+                                   </button>
+
                            </div>
-                       </a>
                    </td>
                </tr>
            {% endfor %}

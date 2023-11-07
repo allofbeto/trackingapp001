@@ -261,7 +261,7 @@ class AddChildOrTrackerView(LoginRequiredMixin, View):
     def get(self, request, category_id):
         parent_category = get_object_or_404(Category, id=category_id, user=request.user)
         categories = Category.objects.filter(user=request.user, parent_category=parent_category)
-        trackers = NumberTracker.objects.filter(user=request.user, category=parent_category)
+        trackers = NumberTracker.objects.filter(user=request.user, category=parent_category).order_by('name')
         category_form = CategoryForm(initial={'parent_category': parent_category}, prefix='category')
         tracker_form = NumberTrackerForm(initial={'category': parent_category}, prefix='tracker')
         return render(request, 'workouts/add_child_or_tracker.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})

@@ -228,23 +228,6 @@
        <button class="plus-button"><img src="{% static 'static/assets/images/icons/blue/plus-bold.svg' %}" style="height: 30px;"></button>
    </header>
    <div class="content">
-       <table>
-           <colgroup>
-               <col style="width: 90%;">
-           </colgroup>
-           <tbody>
-           {% for category in categories %}
-               <tr>
-                   <td><a href="{% url 'workouts:add_child_or_tracker' category_id=category.id %}">
-                       <div class="circle-container">
-                           <div class="circle"></div>
-                           {{ category.name }} <!-- Display category name -->
-                           <button class="boop-button"><img src="{% static 'static/assets/images/icons/blue/arrow-right.svg' %}" style="height:20px;"></button>
-                       </div>
-                   </a></td>
-               </tr>
-           {% endfor %}
-       </tbody>
        </table>
        <table>
            <colgroup>

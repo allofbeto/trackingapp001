@@ -91,7 +91,7 @@ class TrackerEntryForm(forms.ModelForm):
         model = TrackerEntry
         fields = ['weight','rep','number_tracker']
         widgets = {
-            "weight": forms.NumberInput(attrs={'placeholder': 'WEIGHT','class':'custom-weight-input',}),
-            "rep": forms.NumberInput(attrs={'placeholder': 'REPS', 'class':'custom-rep-input'}),
-            "number_tracker": forms.HiddenInput(),
+            "weight": forms.NumberInput(attrs={'placeholder': 'WEIGHT','class':'custom-weight-input', 'class': 'entry_input', }),
+            "rep": forms.NumberInput(attrs={'placeholder': 'REPS', 'class':'custom-rep-input', 'class': 'entry_input', }),
+            "number_tracker": forms.Select(attrs={}),
         }

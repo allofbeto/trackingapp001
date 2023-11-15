@@ -264,7 +264,8 @@ class AddChildOrTrackerView(LoginRequiredMixin, View):
         trackers = NumberTracker.objects.filter(user=request.user, category=parent_category).order_by('name')
         category_form = CategoryForm(initial={'parent_category': parent_category}, prefix='category')
         tracker_form = NumberTrackerForm(initial={'category': parent_category}, prefix='tracker')
-        return render(request, 'workouts/add_child_or_tracker.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
+        entry_form = TrackerEntryForm()
+        return render(request, 'workouts/add_child_or_tracker.html', {'entry_form':entry_form, 'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
 
     def post(self, request, category_id):
         parent_category = get_object_or_404(Category, id=category_id)
@@ -272,6 +273,14 @@ class AddChildOrTrackerView(LoginRequiredMixin, View):
         trackers = NumberTracker.objects.filter(category=parent_category)
         category_form = CategoryForm(request.POST, prefix='category')
         tracker_form = NumberTrackerForm(request.POST, prefix='tracker')
+        tracker = NumberTracker()
+        number_tracker = tracker.name
+        entry_form = TrackerEntryForm(request.POST)
+        #Inputs submitt properly
+        if entry_form.is_valid():
+            entry = entry_form.save(commit=False)
+            entry.user = request.user
+            entry.save()
 
         if category_form.is_valid() and 'create_category' in request.POST:
             category = category_form.save(commit=False)
@@ -288,7 +297,7 @@ class AddChildOrTrackerView(LoginRequiredMixin, View):
             tracker.save()
             return redirect('workouts:new_exercise_list', category_id=parent_category.id, tracker_id=tracker.id)
 
-        return render(request, 'workouts/add_child_or_tracker.html', {'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
+        return render(request, 'workouts/add_child_or_tracker.html', {'entry_form':entry_form, 'category_form': category_form, 'tracker_form': tracker_form, 'categories': categories, 'trackers': trackers, 'parent_category': parent_category})
 
 class NewExerciseListView(View):
     template_name = 'workouts/new_display_entry_form.html'

@@ -5,6 +5,12 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
    <title>{{ category.name }}</title>
    <style>
+       .entry_input{
+            margin:1em;
+            width:2em;
+            height:30px;
+            border-radius:5px;
+       }
        body {
            margin: 0;
            font-family: Arial, sans-serif;
@@ -243,13 +249,19 @@
                                <div style="width:25%;">
                                     <a href="{% url 'workouts:new_exercise_list' category_id=parent_category.id tracker_id=tracker.id %}">{{ tracker.name }} <!-- Display tracker name --></a>
                                </div>
-                                   <input id="weight" type="number" style="margin:1em; width:2em; height:30px; border-radius:5px;" placeholder="LBS"> <span style="color:orange;">x</span> <input type="number" style="height:30px; border-radius:5px; margin:1em; width:2em;" placeholder="REP">
-                                   <button style="background:transparent; border:none; cursor:pointer;">
-                                       <img src="{% static 'static/assets/images/icons/green/submit-success.svg' %}" style="height:20px;">
-                                   </button>
-                                   <button class="boop-button">
-                                       <img src="{% static 'static/assets/images/icons/blue/charts.svg' %}" style="height:20px;">
-                                   </button>
+                               <form method="post" class="tracker-entry-form">
+                                    {% csrf_token %}
+                                    {{ entry_form.number_tracker }}
+                                    {{ entry_form.weight }}
+                                    x
+                                    {{ entry_form.rep }}
+                                    <button type="submit" style="background:transparent; border:none; cursor:pointer;">
+                                        <img src="{% static 'static/assets/images/icons/green/submit-success.svg' %}" style="height:20px;">
+                                    </button>
+                                    <button class="boop-button">
+                                        <img src="{% static 'static/assets/images/icons/blue/charts.svg' %}" style="height:20px;">
+                                    </button>
+                                </form>
 
                            </div>
                    </td>
@@ -350,6 +362,15 @@
     // Use the onunload event to refresh the page
     window.addEventListener('unload', () => {
         // Do nothing, just let the event trigger the page refresh
+    });
+</script>
+
+<script>
+    // Add this script to dynamically set the value of number_tracker field
+    document.addEventListener("DOMContentLoaded", function () {
+        var trackerId = {{ tracker.id }};
+        var numberTrackerField = document.querySelector("#number_tracker"); // Adjust the selector based on your form structure
+        numberTrackerField.value = trackerId;
     });
 </script>
 
